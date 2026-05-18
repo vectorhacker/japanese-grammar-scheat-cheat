@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N5 → N2 Japanese Grammar Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f1e6;
+  --bg-card: #fdfaf2;
+  --bg-card-alt: #f9f3e3;
+  --ink: #1d1916;
+  --ink-soft: #4a4640;
+  --ink-faint: #847f76;
+  --rule: #ddd6c5;
+  --rule-soft: #ebe5d4;
+  --indigo: #0f3a6e;
+  --indigo-deep: #082043;
+  --crimson: #7a2828;
+  --crimson-soft: #a14848;
+  --gold: #b08438;
+  --form-bg: #f5ecd6;
+  --use-bg: #e9efd9;
+  --form-border: #d4c08a;
+  --use-border: #bcc89a;
+  --max-w: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "kern" 1, "liga" 1;
+  /* Subtle paper texture via gradient noise */
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(176,132,56,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(15,58,110,0.03) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* JP text uses a refined Mincho */
+ruby, .ex-jp, .point-form, .category-name {
+  font-family: 'Shippori Mincho', 'Noto Serif JP', 'Yu Mincho', '游明朝', serif;
+}
+
+/* English UI uses Inter */
+.toc, header.site-header, nav.sticky-nav, .meta-label, .point-name, .level-code, .level-tagline {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* === STICKY NAVIGATION === */
+nav.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(246, 241, 230, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+  padding: 12px 24px;
+}
+
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.nav-title {
+  font-family: 'Shippori Mincho', serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--indigo-deep);
+  letter-spacing: 0.01em;
+}
+
+.nav-title em {
+  font-style: normal;
+  color: var(--crimson);
+}
+
+.level-pills {
+  display: flex;
+  gap: 6px;
+}
+
+.level-pill {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+  transition: all 0.15s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.level-pill:hover {
+  background: var(--indigo);
+  color: white;
+  border-color: var(--indigo);
+}
+
+.level-pill.n3, .level-pill.n3:hover {
+  --pill-active-color: var(--crimson);
+}
+.level-pill.n3:hover, .level-pill.n2:hover {
+  background: var(--crimson);
+  border-color: var(--crimson);
+}
+
+.search-box {
+  flex: 0 1 240px;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 7px 12px 7px 32px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--bg-card);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.search-box input:focus {
+  border-color: var(--indigo);
+  background: #fff;
+}
+
+.search-box::before {
+  content: "⌕";
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-faint);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* === HEADER === */
+header.site-header {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 60px 32px 40px;
+  text-align: left;
+  position: relative;
+}
+
+.title-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.title-stamp {
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+  background: var(--crimson);
+  color: #fdfaf2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 3px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+  transform: rotate(-2deg);
+}
+
+.title-stamp small {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+h1.site-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(34px, 5vw, 52px);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: var(--indigo-deep);
+  line-height: 1.1;
+}
+
+.site-title-jp {
+  display: block;
+  font-size: 0.55em;
+  margin-top: 6px;
+  color: var(--crimson);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.site-subtitle {
+  margin: 18px 0 0;
+  max-width: 640px;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+
+.site-meta {
+  margin-top: 24px;
+  display: flex;
+  gap: 24px;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink-faint);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.site-meta strong {
+  color: var(--indigo-deep);
+  font-weight: 600;
+}
+
+/* === MAIN LAYOUT === */
+main {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 32px 80px;
+}
+
+/* === LEVEL SECTIONS === */
+.level-section {
+  margin-top: 64px;
+  scroll-margin-top: 80px;
+}
+
+.level-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid var(--level-color);
+}
+
+.level-mark {
+  flex-shrink: 0;
+}
+
+.level-code {
+  display: inline-block;
+  background: var(--level-color);
+  color: white;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 8px 18px;
+  border-radius: 3px;
+  font-family: 'Inter', sans-serif;
+}
+
+.level-tagline {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  font-family: 'Shippori Mincho', serif;
+}
+
+.level-description {
+  margin: 6px 0 0;
+  font-size: 15px;
+  color: var(--ink-soft);
+  font-family: 'Inter', sans-serif;
+  max-width: 640px;
+}
+
+/* === CATEGORIES === */
+.category {
+  margin-top: 40px;
+  scroll-margin-top: 80px;
+}
+
+.category-name {
+  margin: 0 0 16px;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--level-color, var(--indigo));
+  letter-spacing: 0.01em;
+  padding-left: 14px;
+  border-left: 3px solid var(--level-color, var(--indigo));
+}
+
+/* === GRAMMAR POINTS === */
+.grammar-point {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.grammar-point.hidden {
+  display: none;
+}
+
+.point-header {
+  padding: 16px 22px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  background: linear-gradient(to bottom, var(--bg-card), var(--bg-card-alt));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 18px;
+}
+
+.point-name {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.005em;
+}
+
+.point-form {
+  font-size: 17px;
+  color: var(--crimson);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.point-meta {
+  padding: 0 22px;
+}
+
+.meta-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  margin: 12px 0;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.meta-form {
+  background: var(--form-bg);
+  border: 1px solid var(--form-border);
+}
+
+.meta-use {
+  background: var(--use-bg);
+  border: 1px solid var(--use-border);
+}
+
+.meta-label {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--indigo-deep);
+  padding: 3px 7px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 3px;
+  margin-top: 1px;
+}
+
+.meta-use .meta-label {
+  color: #3d5520;
+}
+
+.meta-text {
+  flex: 1;
+  color: var(--ink-soft);
+  font-family: 'Inter', sans-serif;
+}
+
+/* === EXAMPLES === */
+.examples {
+  margin: 0;
+  padding: 0 22px 18px;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.example {
+  padding: 12px 14px;
+  background: rgba(245, 236, 214, 0.35);
+  border: 1px solid var(--rule-soft);
+  border-radius: 5px;
+}
+
+.ex-jp {
+  font-size: 19px;
+  line-height: 2;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  font-weight: 500;
+}
+
+.ex-jp ruby {
+  ruby-position: over;
+  ruby-align: center;
+}
+
+.ex-jp rt {
+  font-size: 0.55em;
+  color: var(--crimson-soft);
+  font-weight: 400;
+  font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+  letter-spacing: 0.02em;
+  /* Tighter line for the kana */
+  line-height: 1;
+}
+
+.ex-en {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1.45;
+}
+
+/* === NO RESULTS === */
+.no-results {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.no-results.show {
+  display: block;
+}
+
+/* === FOOTER === */
+footer {
+  max-width: var(--max-w);
+  margin: 80px auto 0;
+  padding: 40px 32px;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-faint);
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+}
+
+footer p {
+  margin: 0 0 8px;
+  max-width: 640px;
+}
+
+footer .footer-stamp {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 10px;
+  background: var(--crimson);
+  color: #fdfaf2;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  border-radius: 2px;
+  transform: rotate(-1deg);
+}
+
+/* === MOBILE === */
+@media (max-width: 720px) {
+  body {
+    font-size: 16px;
+  }
+
+  nav.sticky-nav {
+    padding: 10px 16px;
+  }
+
+  .nav-inner {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .nav-title {
+    font-size: 14px;
+    flex: 1 1 100%;
+  }
+
+  .level-pills {
+    order: 2;
+  }
+
+  .search-box {
+    flex: 1 1 auto;
+    order: 1;
+  }
+
+  header.site-header {
+    padding: 36px 20px 28px;
+  }
+
+  .title-block {
+    gap: 16px;
+  }
+
+  .title-stamp {
+    width: 56px;
+    height: 56px;
+    font-size: 21px;
+  }
+
+  main {
+    padding: 0 20px 60px;
+  }
+
+  .level-header {
+    gap: 16px;
+  }
+
+  .level-code {
+    font-size: 22px;
+    padding: 6px 14px;
+  }
+
+  .level-tagline {
+    font-size: 22px;
+  }
+
+  .point-header {
+    padding: 14px 16px 12px;
+  }
+
+  .point-meta {
+    padding: 0 16px;
+  }
+
+  .examples {
+    padding: 0 16px 14px;
+    grid-template-columns: 1fr;
+  }
+
+  .ex-jp {
+    font-size: 18px;
+  }
+}
+
+/* === MOTION === */
+@media (prefers-reduced-motion: no-preference) {
+  .level-section {
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .level-section:nth-child(2) { animation-delay: 0.05s; }
+  .level-section:nth-child(3) { animation-delay: 0.1s; }
+  .level-section:nth-child(4) { animation-delay: 0.15s; }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* === PRINT === */
+@media print {
+  nav.sticky-nav, .search-box { display: none; }
+  body { background: white; }
+  .grammar-point { break-inside: avoid; page-break-inside: avoid; }
+  .level-section { break-before: page; }
+}
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <div class="nav-title">日本語 <em>•</em> Grammar Reference</div>
+    <div class="search-box">
+      <input type="text" id="search" placeholder="Filter grammar points...">
+    </div>
+    <div class="level-pills">
+      <a href="#level-N5" class="level-pill n5">N5</a>
+      <a href="#level-N4" class="level-pill n4">N4</a>
+      <a href="#level-N3" class="level-pill n3">N3</a>
+      <a href="#level-N2" class="level-pill n2">N2</a>
+    </div>
+  </div>
+</nav>
+
+<header class="site-header">
+  <div class="title-block">
+    <div class="title-stamp">
+      N5<small>→N2</small>
+    </div>
+    <div>
+      <h1 class="site-title">
+        Japanese Grammar Reference
+        <span class="site-title-jp">文法のチートシート</span>
+      </h1>
+      <p class="site-subtitle">
+        A progression-organized reference covering JLPT N5 through N2. Each grammar point includes the form
+        rule, a usage note covering common pitfalls, and example sentences with full furigana over the kanji.
+        Verb conjugation examples are split between 一段 and 五段 to surface the pattern.
+      </p>
+      <div class="site-meta">
+        <span><strong>57</strong> grammar points</span>
+        <span><strong>4</strong> JLPT levels</span>
+        <span>~<strong>200</strong> example sentences</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="level-section" id="level-N5" data-level="N5" style="--level-color:#0f3a6e">
+<div class="level-header">
+<div class="level-mark"><span class="level-code">N5</span></div>
+<div class="level-title-block">
+<h2 class="level-tagline">Foundations</h2>
+<p class="level-description">Copula, basic verbs and adjectives, particles, existence, questions, time.</p>
+</div>
+</div>
+<div class="category" id="cat-n5sentence-basics-copula">
+<h3 class="category-name">Sentence basics &amp; copula</h3>
+<article class="grammar-point" id="point-n5copula-です-だ" data-search="copula です/だ noun/な-adj + です (polite) / だ (plain)">
+<header class="point-header">
+<h4 class="point-name">Copula です/だ</h4>
+<div class="point-form">Noun/な-adj + です (polite) / だ (plain)</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">です = polite copula. だ = plain copula (often dropped in casual female speech, retained in male speech and writing). Past: でした / だった. Negative: じゃない(です) / ではありません. Past negative: じゃなかった(です).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Identifies/equates. &#x27;X is Y&#x27;. Don&#x27;t use です with い-adjectives&#x27; conjugation (高いです is OK, but 高いだ is wrong — drop だ after い-adj).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>私<rt>わたし</rt></ruby>は<ruby>学生<rt>がくせい</rt></ruby>です。</div><div class="ex-en">I am a student.</div></li>
+<li class="example"><div class="ex-jp">これは<ruby>本<rt>ほん</rt></ruby>だ。</div><div class="ex-en">This is a book.</div></li>
+<li class="example"><div class="ex-jp"><ruby>昨日<rt>きのう</rt></ruby>は<ruby>休<rt>やす</rt></ruby>みじゃなかった。</div><div class="ex-en">Yesterday wasn&#x27;t a day off.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n5topic-vs-subject-は-vs-が" data-search="topic vs subject (は vs が) [topic] は ... / [subject] が ...">
+<header class="point-header">
+<h4 class="point-name">Topic vs subject (は vs が)</h4>
+<div class="point-form">[Topic] は ... / [Subject] が ...</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">は marks the topic (&#x27;as for X&#x27;). が marks the grammatical subject. New information uses が; known/contextual information uses は. Question words always take が in their answers.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">は for general statements about a topic. が for emphasis, identification, or new information. &#x27;Who came?&#x27; → 田中さんが来ました (が, new info). &#x27;Tanaka came&#x27; (already discussing him) → 田中さんは来ました.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>私<rt>わたし</rt></ruby>は<ruby>田中<rt>たなか</rt></ruby>です。</div><div class="ex-en">I&#x27;m Tanaka. (topic: me)</div></li>
+<li class="example"><div class="ex-jp"><ruby>誰<rt>だれ</rt></ruby>が<ruby>来<rt>こ</rt></ruby>ましたか？</div><div class="ex-en">Who came? (question word + が)</div></li>
+<li class="example"><div class="ex-jp"><ruby>象<rt>ぞう</rt></ruby>は<ruby>鼻<rt>はな</rt></ruby>が<ruby>長<rt>なが</rt></ruby>い。</div><div class="ex-en">Elephants have long noses. (topic: elephants; subject of 長い: nose)</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n5verbs-present-past">
+<h3 class="category-name">Verbs — present &amp; past</h3>
+<article class="grammar-point" id="point-n5present-future-polite" data-search="present/future polite verb-stem + ます">
+<header class="point-header">
+<h4 class="point-name">Present/future polite</h4>
+<div class="point-form">Verb-stem + ます</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Ichidan: drop る + ます (食べる→食べます). Godan: u→i + ます (飲む→飲みます). Irregulars: する→します, 来る→来ます. Same form covers present habitual and future.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Default polite form. Use in formal/professional/unfamiliar contexts. Negative: 〜ません. Past: 〜ました. Past negative: 〜ませんでした.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>食<rt>た</rt></ruby>べます</div><div class="ex-en">eat / will eat</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>見<rt>み</rt></ruby>ます</div><div class="ex-en">see / will see</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>寝<rt>ね</rt></ruby>ます</div><div class="ex-en">sleep / will sleep</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>飲<rt>の</rt></ruby>みます</div><div class="ex-en">drink / will drink</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>行<rt>い</rt></ruby>きます</div><div class="ex-en">go / will go</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>話<rt>はな</rt></ruby>します</div><div class="ex-en">speak / will speak</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n5negative-polite-ません" data-search="negative polite (〜ません) verb-stem + ません">
+<header class="point-header">
+<h4 class="point-name">Negative polite (〜ません)</h4>
+<div class="point-form">Verb-stem + ません</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Replace the ます of the ます-form with ません. Past negative: ませんでした.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Polite negation. Casual equivalent is the plain 〜ない form (食べない). Both are essential; the polite form is safer in unknown social contexts.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>食<rt>た</rt></ruby>べません</div><div class="ex-en">do not eat</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>見<rt>み</rt></ruby>ません</div><div class="ex-en">do not see</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>起<rt>お</rt></ruby>きません</div><div class="ex-en">do not wake up</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>飲<rt>の</rt></ruby>みません</div><div class="ex-en">do not drink</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>行<rt>い</rt></ruby>きません</div><div class="ex-en">do not go</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>待<rt>ま</rt></ruby>ちません</div><div class="ex-en">do not wait</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n5past-polite-ました" data-search="past polite (〜ました) verb-stem + ました">
+<header class="point-header">
+<h4 class="point-name">Past polite (〜ました)</h4>
+<div class="point-form">Verb-stem + ました</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Replace ます with ました. Past negative: ませんでした (long form).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Polite past. Casual equivalent: 〜た form (食べた, 飲んだ). Note that past-tense politeness in negative is awkwardly long (〜ませんでした) — casual speech often switches to 〜なかった for ease.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>食<rt>た</rt></ruby>べました</div><div class="ex-en">ate</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>見<rt>み</rt></ruby>ました</div><div class="ex-en">saw</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>教<rt>おし</rt></ruby>えました</div><div class="ex-en">taught</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>飲<rt>の</rt></ruby>みました</div><div class="ex-en">drank</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>行<rt>い</rt></ruby>きました</div><div class="ex-en">went</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>書<rt>か</rt></ruby>きました</div><div class="ex-en">wrote</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n5plain-forms-dictionary-ない-た-なかった" data-search="plain forms (dictionary, ない, た, なかった) 食べる / 食べない / 食べた / 食べなかった">
+<header class="point-header">
+<h4 class="point-name">Plain forms (dictionary, ない, た, なかった)</h4>
+<div class="point-form">食べる / 食べない / 食べた / 食べなかった</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Dictionary form is the base. ない form: ichidan drops る+ない; godan changes u→a+ない (飲む→飲まない). Past plain: ichidan drops る+た; godan has phonological changes (飲む→飲んだ, 行く→行った, 話す→話した).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Required for ALL grammar that builds on plain form: と思う, と言う, つもり, ようだ, conditional 〜たら, etc. Also the casual register among friends/family.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>食<rt>た</rt></ruby>べる/<ruby>食<rt>た</rt></ruby>べない/<ruby>食<rt>た</rt></ruby>べた</div><div class="ex-en">eat / not eat / ate</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>見<rt>み</rt></ruby>る/<ruby>見<rt>み</rt></ruby>ない/<ruby>見<rt>み</rt></ruby>た</div><div class="ex-en">see / not see / saw</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>起<rt>お</rt></ruby>きる/<ruby>起<rt>お</rt></ruby>きない/<ruby>起<rt>お</rt></ruby>きた</div><div class="ex-en">wake / not wake / woke</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>飲<rt>の</rt></ruby>む/<ruby>飲<rt>の</rt></ruby>まない/<ruby>飲<rt>の</rt></ruby>んだ</div><div class="ex-en">drink / not drink / drank</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>行<rt>い</rt></ruby>く/<ruby>行<rt>い</rt></ruby>かない/<ruby>行<rt>い</rt></ruby>った</div><div class="ex-en">go / not go / went (irreg. past)</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>話<rt>はな</rt></ruby>す/<ruby>話<rt>はな</rt></ruby>さない/<ruby>話<rt>はな</rt></ruby>した</div><div class="ex-en">speak / not speak / spoke</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n5adjectives">
+<h3 class="category-name">Adjectives</h3>
+<article class="grammar-point" id="point-n5いadjectives-all-forms" data-search="い-adjectives (all forms) 高い / 高くない / 高かった / 高くなかった">
+<header class="point-header">
+<h4 class="point-name">い-adjectives (all forms)</h4>
+<div class="point-form">高い / 高くない / 高かった / 高くなかった</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Drop the final い for conjugation. Negative: 〜くない. Past: 〜かった. Past negative: 〜くなかった. EXCEPTION: いい conjugates from よい (よくない, よかった, よくなかった).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">い-adjectives carry their own tense. Never put だ after an い-adj. With です, the い-adj keeps its conjugation: 高いです / 高くなかったです.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">このラーメンは<ruby>美味<rt>おい</rt></ruby>しい。</div><div class="ex-en">This ramen is delicious.</div></li>
+<li class="example"><div class="ex-jp"><ruby>昨日<rt>きのう</rt></ruby>は<ruby>寒<rt>さむ</rt></ruby>くなかった。</div><div class="ex-en">Yesterday wasn&#x27;t cold.</div></li>
+<li class="example"><div class="ex-jp"><ruby>天気<rt>てんき</rt></ruby>がよかった。</div><div class="ex-en">The weather was good. (irregular いい→よかった)</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n5なadjectives-all-forms" data-search="な-adjectives (all forms) 静か / 静かじゃない / 静かだった / 静かじゃなかった">
+<header class="point-header">
+<h4 class="point-name">な-adjectives (all forms)</h4>
+<div class="point-form">静か / 静かじゃない / 静かだった / 静かじゃなかった</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Behave like nouns + copula. Take な before a noun (静かな町). Negative: じゃない. Past: だった. Past negative: じゃなかった. Polite: です / じゃありません / でした / じゃありませんでした.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Memorize which adjectives are な vs い — some look like い-adj but aren&#x27;t (きれい, ゆうめい are な-adj despite ending in い).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>彼女<rt>かのじょ</rt></ruby>はきれいです。</div><div class="ex-en">She is pretty. (な-adj despite い ending)</div></li>
+<li class="example"><div class="ex-jp"><ruby>静<rt>しず</rt></ruby>かな<ruby>町<rt>まち</rt></ruby>に<ruby>住<rt>す</rt></ruby>みたい。</div><div class="ex-en">I want to live in a quiet town.</div></li>
+<li class="example"><div class="ex-jp"><ruby>昨日<rt>きのう</rt></ruby>のテストは<ruby>簡単<rt>かんたん</rt></ruby>じゃなかった。</div><div class="ex-en">Yesterday&#x27;s test wasn&#x27;t easy.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n5connecting-adjectives-てform" data-search="connecting adjectives (て-form) い-adj: 〜くて; な-adj/noun: 〜で">
+<header class="point-header">
+<h4 class="point-name">Connecting adjectives (て-form)</h4>
+<div class="point-form">い-adj: 〜くて; な-adj/noun: 〜で</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">い-adj: drop い, add くて (高い→高くて). な-adj/noun: add で (静か→静かで). Use to stack descriptions or introduce a reason.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Listing qualities: &#x27;安くて美味しい&#x27; = &#x27;cheap and tasty&#x27;. Also subtle reason-giving: &#x27;寒くて行きたくない&#x27; = &#x27;it&#x27;s cold, so I don&#x27;t want to go&#x27;.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>安<rt>やす</rt></ruby>くて<ruby>美味<rt>おい</rt></ruby>しい<ruby>店<rt>みせ</rt></ruby>です。</div><div class="ex-en">It&#x27;s a cheap and tasty restaurant.</div></li>
+<li class="example"><div class="ex-jp"><ruby>静<rt>しず</rt></ruby>かで<ruby>便利<rt>べんり</rt></ruby>な<ruby>場所<rt>ばしょ</rt></ruby>です。</div><div class="ex-en">It&#x27;s a quiet and convenient place.</div></li>
+<li class="example"><div class="ex-jp"><ruby>難<rt>むずか</rt></ruby>しくて<ruby>分<rt>わ</rt></ruby>からない。</div><div class="ex-en">It&#x27;s hard, so I don&#x27;t understand.</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n5particles-essential-set">
+<h3 class="category-name">Particles (essential set)</h3>
+<article class="grammar-point" id="point-n5は-が-を" data-search="は, が, を x は (topic) / x が (subject) / x を (direct object)">
+<header class="point-header">
+<h4 class="point-name">は, が, を</h4>
+<div class="point-form">X は (topic) / X が (subject) / X を (direct object)</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">は = topic marker (pronounced &#x27;wa&#x27;). が = subject marker, especially for new info or emphasis. を = direct object (pronounced &#x27;o&#x27; or &#x27;wo&#x27;).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">を follows the thing being acted on. &#x27;I drink water&#x27; → 水を飲む. Movement-through verbs also use を: 公園を歩く (&#x27;walk through the park&#x27;).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>私<rt>わたし</rt></ruby>はコーヒーを<ruby>飲<rt>の</rt></ruby>みます。</div><div class="ex-en">I drink coffee. (topic は + object を)</div></li>
+<li class="example"><div class="ex-jp"><ruby>猫<rt>ねこ</rt></ruby>が<ruby>好<rt>す</rt></ruby>きです。</div><div class="ex-en">I like cats. (subject of 好き is the cat — counterintuitive!)</div></li>
+<li class="example"><div class="ex-jp"><ruby>公園<rt>こうえん</rt></ruby>を<ruby>散歩<rt>さんぽ</rt></ruby>する。</div><div class="ex-en">I take a walk through the park. (movement を)</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n5に-で-へ" data-search="に, で, へ x に (target/time/location) / x で (action location/means) / x へ (direction)">
+<header class="point-header">
+<h4 class="point-name">に, で, へ</h4>
+<div class="point-form">X に (target/time/location) / X で (action location/means) / X へ (direction)</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">に = arrival point, time, indirect object, location of EXISTENCE (います/あります). で = where an ACTION takes place, or means (バスで, 日本語で). へ = direction (pronounced &#x27;e&#x27;), mostly interchangeable with に for movement.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Common mix-up: &#x27;eat at home&#x27; = 家で食べる (action location → で), &#x27;be at home&#x27; = 家にいる (existence → に). Time: 3時に会う (specific time takes に).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>学校<rt>がっこう</rt></ruby>に<ruby>行<rt>い</rt></ruby>きます。</div><div class="ex-en">I go to school. (target with に)</div></li>
+<li class="example"><div class="ex-jp">カフェでコーヒーを<ruby>飲<rt>の</rt></ruby>む。</div><div class="ex-en">I drink coffee at the cafe. (action location で)</div></li>
+<li class="example"><div class="ex-jp">バスで<ruby>行<rt>い</rt></ruby>きます。</div><div class="ex-en">I go by bus. (means で)</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n5と-も-の" data-search="と, も, の x と y (with/and) / x も (also) / x の y (x&#x27;s y / x of y)">
+<header class="point-header">
+<h4 class="point-name">と, も, の</h4>
+<div class="point-form">X と Y (with/and) / X も (also) / X の Y (X&#x27;s Y / X of Y)</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">と links nouns (&#x27;A and B&#x27;) or marks an accompanier (&#x27;with X&#x27;). も replaces は/が/を to mean &#x27;also&#x27; or &#x27;too&#x27;. の is the most versatile particle: possessive, descriptive, nominalizer.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">の chains can be deep: 友達の家のドア = &#x27;my friend&#x27;s house&#x27;s door&#x27;. と for exhaustive lists (only the items listed); や for partial lists (these and others).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>友達<rt>ともだち</rt></ruby>と<ruby>映画<rt>えいが</rt></ruby>を<ruby>見<rt>み</rt></ruby>た。</div><div class="ex-en">I saw a movie with a friend.</div></li>
+<li class="example"><div class="ex-jp"><ruby>私<rt>わたし</rt></ruby>もコーヒーが<ruby>好<rt>す</rt></ruby>きです。</div><div class="ex-en">I also like coffee.</div></li>
+<li class="example"><div class="ex-jp">これは<ruby>私<rt>わたし</rt></ruby>の<ruby>本<rt>ほん</rt></ruby>です。</div><div class="ex-en">This is my book.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n5から-まで-や" data-search="から, まで, や x から y まで (from x to y); x や y (x and y, among others)">
+<header class="point-header">
+<h4 class="point-name">から, まで, や</h4>
+<div class="point-form">X から Y まで (from X to Y); X や Y (X and Y, among others)</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">から = from (start point in time/space, or reason). まで = until/up to (end point). や = inexhaustive list (unlike と).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Time ranges: 9時から5時まで (&#x27;9 to 5&#x27;). Reason use of から differs from spatial — clause + から = &#x27;because&#x27; (covered later). や implies there&#x27;s more: 本やノートを買った (&#x27;books, notebooks, and other things&#x27;).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">9<ruby>時<rt>じ</rt></ruby>から5<ruby>時<rt>じ</rt></ruby>まで<ruby>働<rt>はたら</rt></ruby>く。</div><div class="ex-en">I work from 9 to 5.</div></li>
+<li class="example"><div class="ex-jp"><ruby>本<rt>ほん</rt></ruby>やノートを<ruby>買<rt>か</rt></ruby>った。</div><div class="ex-en">I bought books, notebooks, etc.</div></li>
+<li class="example"><div class="ex-jp"><ruby>東京<rt>とうきょう</rt></ruby>から<ruby>大阪<rt>おおさか</rt></ruby>まで<ruby>新幹線<rt>しんかんせん</rt></ruby>で<ruby>行<rt>い</rt></ruby>く。</div><div class="ex-en">I go from Tokyo to Osaka by bullet train.</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n5existence-possession">
+<h3 class="category-name">Existence &amp; possession</h3>
+<article class="grammar-point" id="point-n5います-あります" data-search="います / あります x が います / あります">
+<header class="point-header">
+<h4 class="point-name">います / あります</h4>
+<div class="point-form">X が います / あります</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">います: animate (people, animals, sentient beings). あります: inanimate (objects, plants, events, abstract concepts).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Events use あります (会議があります). Possession often uses あります for things, います for relationships (&#x27;I have a sister&#x27; = 妹がいます).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>公園<rt>こうえん</rt></ruby>に<ruby>犬<rt>いぬ</rt></ruby>がいます。</div><div class="ex-en">There is a dog in the park.</div></li>
+<li class="example"><div class="ex-jp"><ruby>机<rt>つくえ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>に<ruby>本<rt>ほん</rt></ruby>があります。</div><div class="ex-en">There is a book on the desk.</div></li>
+<li class="example"><div class="ex-jp"><ruby>明日<rt>あした</rt></ruby>、<ruby>会議<rt>かいぎ</rt></ruby>があります。</div><div class="ex-en">There is a meeting tomorrow.</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n5questions-basic-patterns">
+<h3 class="category-name">Questions &amp; basic patterns</h3>
+<article class="grammar-point" id="point-n5question-words-か" data-search="question words &amp; か sentence + か (polite question marker)">
+<header class="point-header">
+<h4 class="point-name">Question words &amp; か</h4>
+<div class="point-form">Sentence + か (polite question marker)</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Common question words: 何 (なに/なん, what), 誰 (だれ, who), どこ (where), いつ (when), どう (how), どうして/なぜ (why), いくら (how much), いくつ (how many).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Polite questions end in か (no Western question mark needed). Casual questions just use rising intonation: 食べる？. With question words, answers take が (not は) for the new info.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">これは<ruby>何<rt>なん</rt></ruby>ですか？</div><div class="ex-en">What is this?</div></li>
+<li class="example"><div class="ex-jp">どこに<ruby>行<rt>い</rt></ruby>きますか？</div><div class="ex-en">Where are you going?</div></li>
+<li class="example"><div class="ex-jp">いくらですか？</div><div class="ex-en">How much is it?</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n5counters-basic" data-search="counters (basic) number + counter (with phonological changes)">
+<header class="point-header">
+<h4 class="point-name">Counters (basic)</h4>
+<div class="point-form">Number + counter (with phonological changes)</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Essential counters: 〜つ (general, 1-10: ひとつ, ふたつ, みっつ...), 〜個 (small items), 〜人 (people: ひとり, ふたり, さんにん...), 〜本 (long cylindrical), 〜枚 (flat), 〜匹 (small animals).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Counters are mandatory. 〜つ is the safe fallback for objects. Watch for sound changes: 一本=いっぽん, 三本=さんぼん, 六本=ろっぽん, 一人=ひとり, 二人=ふたり, 三人=さんにん.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">りんごを<ruby>三<rt>みっ</rt></ruby>つください。</div><div class="ex-en">Three apples please.</div></li>
+<li class="example"><div class="ex-jp"><ruby>鉛筆<rt>えんぴつ</rt></ruby>が<ruby>二本<rt>にほん</rt></ruby>あります。</div><div class="ex-en">There are two pencils.</div></li>
+<li class="example"><div class="ex-jp"><ruby>犬<rt>いぬ</rt></ruby>が<ruby>三匹<rt>さんびき</rt></ruby>います。</div><div class="ex-en">There are three dogs. (匹→びき after さん)</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n5time-expressions" data-search="time expressions specific time + に (e.g., 3時に); 〜曜日 for weekdays">
+<header class="point-header">
+<h4 class="point-name">Time expressions</h4>
+<div class="point-form">Specific time + に (e.g., 3時に); 〜曜日 for weekdays</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Specific times take に: 3時に (at 3 o&#x27;clock), 月曜日に (on Monday), 6月に (in June). Relative times don&#x27;t take に: 今日, 明日, 昨日, 来週, 先週.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Numbers + 時 = hour. 分 = minute (sound changes: 1分=いっぷん, 3分=さんぷん). Days of week: 月火水木金土日曜日.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">7<ruby>時<rt>じ</rt></ruby>に<ruby>起<rt>お</rt></ruby>きます。</div><div class="ex-en">I wake up at 7.</div></li>
+<li class="example"><div class="ex-jp"><ruby>月曜日<rt>げつようび</rt></ruby>に<ruby>会議<rt>かいぎ</rt></ruby>があります。</div><div class="ex-en">There&#x27;s a meeting on Monday.</div></li>
+<li class="example"><div class="ex-jp"><ruby>明日<rt>あした</rt></ruby>、<ruby>映画<rt>えいが</rt></ruby>を<ruby>見<rt>み</rt></ruby>ます。</div><div class="ex-en">Tomorrow, I&#x27;ll watch a movie. (relative time, no に)</div></li>
+</ul>
+</article>
+</div>
+</section>
+<section class="level-section" id="level-N4" data-level="N4" style="--level-color:#0f3a6e">
+<div class="level-header">
+<div class="level-mark"><span class="level-code">N4</span></div>
+<div class="level-title-block">
+<h2 class="level-tagline">Building blocks</h2>
+<p class="level-description">て-form and its core uses, desire, basic modals, comparisons, giving and receiving, nominalization.</p>
+</div>
+</div>
+<div class="category" id="cat-n4てform-its-core-uses">
+<h3 class="category-name">て-form &amp; its core uses</h3>
+<article class="grammar-point" id="point-n4てform-conjugation" data-search="て-form (conjugation) ichidan: 〜る→〜て. godan: phonological (う→って, く→いて, etc.)">
+<header class="point-header">
+<h4 class="point-name">て-form (conjugation)</h4>
+<div class="point-form">Ichidan: 〜る→〜て. Godan: phonological (う→って, く→いて, etc.)</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Ichidan: drop る + て (食べる→食べて). Godan: う,つ,る→って (買う→買って); む,ぬ,ぶ→んで (飲む→飲んで); く→いて (書く→書いて) BUT 行く→行って; ぐ→いで (泳ぐ→泳いで); す→して (話す→話して). Irregular: する→して, 来る→来て.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Te-form is THE backbone of intermediate grammar. Used to: connect verbs, request (〜てください), continuous (〜ている), permission (〜てもいい), prohibition, and many more.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>食<rt>た</rt></ruby>べる→<ruby>食<rt>た</rt></ruby>べて</div><div class="ex-en">eat → and...</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>見<rt>み</rt></ruby>る→<ruby>見<rt>み</rt></ruby>て</div><div class="ex-en">see → and...</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>起<rt>お</rt></ruby>きる→<ruby>起<rt>お</rt></ruby>きて</div><div class="ex-en">wake up → and...</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>飲<rt>の</rt></ruby>む→<ruby>飲<rt>の</rt></ruby>んで</div><div class="ex-en">drink → and... (mu/nu/bu→nde)</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>書<rt>か</rt></ruby>く→<ruby>書<rt>か</rt></ruby>いて</div><div class="ex-en">write → and... (ku→ite)</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>行<rt>い</rt></ruby>く→<ruby>行<rt>い</rt></ruby>って</div><div class="ex-en">go → and... (exception: not 行いて)</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n4てください-polite-request" data-search="〜てください (polite request) verb-て + ください">
+<header class="point-header">
+<h4 class="point-name">〜てください (polite request)</h4>
+<div class="point-form">Verb-て + ください</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">て-form + ください = &#x27;please do X&#x27;. Negative request: 〜ないでください = &#x27;please don&#x27;t do X&#x27;.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Polite but somewhat directive — softer alternatives exist for very polite contexts (〜ていただけませんか). Often dropped in close conversation: 食べて = &#x27;eat (please)&#x27;.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">ここに<ruby>座<rt>すわ</rt></ruby>ってください。</div><div class="ex-en">Please sit here.</div></li>
+<li class="example"><div class="ex-jp"><ruby>写真<rt>しゃしん</rt></ruby>を<ruby>撮<rt>と</rt></ruby>ってください。</div><div class="ex-en">Please take a photo.</div></li>
+<li class="example"><div class="ex-jp">ここでタバコを<ruby>吸<rt>す</rt></ruby>わないでください。</div><div class="ex-en">Please don&#x27;t smoke here.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n4ている-progressive-state" data-search="〜ている (progressive / state) verb-て + いる">
+<header class="point-header">
+<h4 class="point-name">〜ている (progressive / state)</h4>
+<div class="point-form">Verb-て + いる</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Ongoing action (&#x27;is doing&#x27;) OR resultant state (&#x27;is in the state of having done&#x27;). Verb class determines which: 食べている = &#x27;is eating&#x27; (action); 結婚している = &#x27;is married&#x27; (state from the past act).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Pay attention to state verbs: 知っている = &#x27;know&#x27; (not &#x27;am knowing&#x27;). 住んでいる = &#x27;live&#x27;. Casual: 〜てる (the い drops).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>今<rt>いま</rt></ruby>、ご<ruby>飯<rt>めし</rt></ruby>を<ruby>食<rt>た</rt></ruby>べている。</div><div class="ex-en">I&#x27;m eating now. (action)</div></li>
+<li class="example"><div class="ex-jp"><ruby>彼<rt>かれ</rt></ruby>は<ruby>結婚<rt>けっこん</rt></ruby>している。</div><div class="ex-en">He is married. (state)</div></li>
+<li class="example"><div class="ex-jp"><ruby>東京<rt>とうきょう</rt></ruby>に<ruby>住<rt>す</rt></ruby>んでいます。</div><div class="ex-en">I live in Tokyo. (state)</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n4てもいい-permission" data-search="〜てもいい (permission) verb-て + もいい(ですか)">
+<header class="point-header">
+<h4 class="point-name">〜てもいい (permission)</h4>
+<div class="point-form">Verb-て + もいい(ですか)</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Asking permission: 〜てもいいですか. Granting permission: 〜てもいい(よ). Negation: 〜なくてもいい = &#x27;you don&#x27;t have to&#x27;.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Polite alternative for asking: 〜てもよろしいですか. The 〜なくてもいい construction is the standard way to say &#x27;don&#x27;t have to&#x27; in Japanese — there&#x27;s no separate word for it.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">ここに<ruby>座<rt>すわ</rt></ruby>ってもいいですか？</div><div class="ex-en">May I sit here?</div></li>
+<li class="example"><div class="ex-jp"><ruby>写真<rt>しゃしん</rt></ruby>を<ruby>撮<rt>と</rt></ruby>ってもいい。</div><div class="ex-en">You can take a photo.</div></li>
+<li class="example"><div class="ex-jp"><ruby>急<rt>いそ</rt></ruby>がなくてもいいよ。</div><div class="ex-en">You don&#x27;t have to rush.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n4てはいけない-prohibition" data-search="〜てはいけない (prohibition) verb-て + はいけない / はだめ">
+<header class="point-header">
+<h4 class="point-name">〜てはいけない (prohibition)</h4>
+<div class="point-form">Verb-て + はいけない / はだめ</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Formal: 〜てはいけません. Casual: 〜ちゃいけない, 〜ちゃだめ (with sound change: 食べては→食べちゃ, 飲んでは→飲んじゃ).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Strong prohibition. Softer ways exist: 〜ないでください is gentler. The casual 〜ちゃだめ is common in everyday speech.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">ここで<ruby>写真<rt>しゃしん</rt></ruby>を<ruby>撮<rt>と</rt></ruby>ってはいけません。</div><div class="ex-en">You may not take photos here.</div></li>
+<li class="example"><div class="ex-jp"><ruby>夜遅<rt>よるおそ</rt></ruby>く<ruby>電話<rt>でんわ</rt></ruby>しちゃだめ。</div><div class="ex-en">Don&#x27;t call late at night. (casual)</div></li>
+<li class="example"><div class="ex-jp">この<ruby>部屋<rt>へや</rt></ruby>に<ruby>入<rt>はい</rt></ruby>ってはいけない。</div><div class="ex-en">You can&#x27;t enter this room.</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n4desire-invitation">
+<h3 class="category-name">Desire &amp; invitation</h3>
+<article class="grammar-point" id="point-n4たい-たくない-want-to" data-search="〜たい / 〜たくない (want to) verb-stem + たい / たくない">
+<header class="point-header">
+<h4 class="point-name">〜たい / 〜たくない (want to)</h4>
+<div class="point-form">Verb-stem + たい / たくない</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Drop ます from the ます-form, add たい. Conjugates like an い-adjective (たくない, たかった, たくなかった). Only for first person (or asking &#x27;do you want to&#x27;).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">For third-person desires, use 〜たがる: 彼は行きたがっている = &#x27;he wants to go (apparent)&#x27;. Negative 〜たくない is common in real speech.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>日本<rt>にほん</rt></ruby>に<ruby>行<rt>い</rt></ruby>きたい。</div><div class="ex-en">I want to go to Japan.</div></li>
+<li class="example"><div class="ex-jp">もう<ruby>食<rt>た</rt></ruby>べたくない。</div><div class="ex-en">I don&#x27;t want to eat anymore.</div></li>
+<li class="example"><div class="ex-jp"><ruby>子供<rt>こども</rt></ruby>の<ruby>頃<rt>ころ</rt></ruby>、<ruby>宇宙飛行士<rt>うちゅうひこうし</rt></ruby>になりたかった。</div><div class="ex-en">When I was a kid, I wanted to be an astronaut.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n4ましょう-ませんか-lets-shall-we" data-search="〜ましょう / 〜ませんか (let&#x27;s / shall we) verb-stem + ましょう / ませんか">
+<header class="point-header">
+<h4 class="point-name">〜ましょう / 〜ませんか (let&#x27;s / shall we)</h4>
+<div class="point-form">Verb-stem + ましょう / ませんか</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">〜ましょう = &#x27;let&#x27;s do X&#x27; (declarative). 〜ませんか = &#x27;won&#x27;t you...? / shall we?&#x27; (more inviting, leaves room for refusal). Plain forms: 〜よう (volitional).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">〜ませんか is softer — used for invitations. 〜ましょう is more &#x27;come on, let&#x27;s do it&#x27; / &#x27;let&#x27;s get this done&#x27;. Plain volitional 〜よう is for self-talk or close friends.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>映画<rt>えいが</rt></ruby>を<ruby>見<rt>み</rt></ruby>ましょう。</div><div class="ex-en">Let&#x27;s watch a movie together.</div></li>
+<li class="example"><div class="ex-jp">お<ruby>茶<rt>ちゃ</rt></ruby>を<ruby>飲<rt>の</rt></ruby>みませんか？</div><div class="ex-en">Would you like to have some tea?</div></li>
+<li class="example"><div class="ex-jp">そろそろ<ruby>行<rt>い</rt></ruby>こう。</div><div class="ex-en">Let&#x27;s get going. (plain volitional)</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n4modal-obligation">
+<h3 class="category-name">Modal &amp; obligation</h3>
+<article class="grammar-point" id="point-n4なければならない-なきゃ-must" data-search="〜なければならない / 〜なきゃ (must) verb-ない, drop い + ければならない. casual: 〜なきゃ, 〜なくちゃ">
+<header class="point-header">
+<h4 class="point-name">〜なければならない / 〜なきゃ (must)</h4>
+<div class="point-form">Verb-ない, drop い + ければならない. Casual: 〜なきゃ, 〜なくちゃ</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Full form: 食べない→食べなければならない. Variants: 〜なければいけない, 〜ないといけない. Casual reductions: 〜なきゃ, 〜なくちゃ (often left hanging without いけない).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Obligation. Often shortened in speech: &#x27;行かなきゃ…&#x27; trails off. ならない is more &#x27;general rule&#x27;, いけない more &#x27;I personally must&#x27;.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>明日<rt>あした</rt></ruby><ruby>早<rt>はや</rt></ruby>く<ruby>起<rt>お</rt></ruby>きなければならない。</div><div class="ex-en">I have to wake up early tomorrow.</div></li>
+<li class="example"><div class="ex-jp">もう<ruby>行<rt>い</rt></ruby>かなきゃ。</div><div class="ex-en">I gotta go now.</div></li>
+<li class="example"><div class="ex-jp"><ruby>宿題<rt>しゅくだい</rt></ruby>をしなくちゃいけない。</div><div class="ex-en">I have to do my homework.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n4たほうがいい-had-better-should" data-search="〜たほうがいい (had better / should) verb-た + ほうがいい">
+<header class="point-header">
+<h4 class="point-name">〜たほうがいい (had better / should)</h4>
+<div class="point-form">Verb-た + ほうがいい</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Past plain form + ほうがいい = &#x27;it&#x27;d be better to X&#x27;. Negative: 〜ないほうがいい. Uses past form even for present/future advice — quirk to memorize.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Standard form for everyday advice. Softer than 〜べき. Don&#x27;t confuse with the comparison structure 〜のほうが (same word ほう, different grammar).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>早<rt>はや</rt></ruby>く<ruby>寝<rt>ね</rt></ruby>たほうがいいよ。</div><div class="ex-en">You should sleep early.</div></li>
+<li class="example"><div class="ex-jp"><ruby>無理<rt>むり</rt></ruby>しないほうがいい。</div><div class="ex-en">You shouldn&#x27;t push yourself.</div></li>
+<li class="example"><div class="ex-jp"><ruby>傘<rt>かさ</rt></ruby>を<ruby>持<rt>も</rt></ruby>って<ruby>行<rt>い</rt></ruby>ったほうがいい。</div><div class="ex-en">You should take an umbrella.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n4つもり-intend-to" data-search="〜つもり (intend to) dict. form + つもり; 〜ないつもり for negative intent">
+<header class="point-header">
+<h4 class="point-name">〜つもり (intend to)</h4>
+<div class="point-form">Dict. form + つもり; 〜ないつもり for negative intent</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Verb-plain + つもり. Past plans you didn&#x27;t follow: 〜つもりだった. Subjective belief contrary to fact: 若いつもり (&#x27;I (mistakenly) think I&#x27;m young&#x27;).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Strong personal intention — firmer than 〜たい. Don&#x27;t use for others&#x27; intentions you&#x27;re unsure of (use 〜と思う or 〜らしい instead).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>来年<rt>らいねん</rt></ruby><ruby>日本<rt>にほん</rt></ruby>に<ruby>行<rt>い</rt></ruby>くつもりだ。</div><div class="ex-en">I intend to go to Japan next year.</div></li>
+<li class="example"><div class="ex-jp"><ruby>今日<rt>きょう</rt></ruby>は<ruby>何<rt>なに</rt></ruby>もしないつもりです。</div><div class="ex-en">I don&#x27;t plan to do anything today.</div></li>
+<li class="example"><div class="ex-jp"><ruby>彼<rt>かれ</rt></ruby>に<ruby>伝<rt>つた</rt></ruby>えたつもりだった。</div><div class="ex-en">I thought I had told him. (but apparently didn&#x27;t)</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n4予定-scheduled-plan" data-search="〜予定 (scheduled plan) dict. form + 予定; noun + の予定">
+<header class="point-header">
+<h4 class="point-name">〜予定 (scheduled plan)</h4>
+<div class="point-form">Dict. form + 予定; noun + の予定</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">More fixed/external than つもり — refers to scheduled events. Often paired with specific dates/times.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Use for confirmed plans, not vague intentions. 旅行の予定がある = &#x27;I have a trip scheduled&#x27;. つもり = personal will; 予定 = arranged on a calendar.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>来週<rt>らいしゅう</rt></ruby>、<ruby>京都<rt>きょうと</rt></ruby>に<ruby>行<rt>い</rt></ruby>く<ruby>予定<rt>よてい</rt></ruby>です。</div><div class="ex-en">I&#x27;m scheduled to go to Kyoto next week.</div></li>
+<li class="example"><div class="ex-jp"><ruby>会議<rt>かいぎ</rt></ruby>は3<ruby>時<rt>じ</rt></ruby>の<ruby>予定<rt>よてい</rt></ruby>です。</div><div class="ex-en">The meeting is scheduled for 3 o&#x27;clock.</div></li>
+<li class="example"><div class="ex-jp"><ruby>今日<rt>きょう</rt></ruby>は<ruby>予定<rt>よてい</rt></ruby>がない。</div><div class="ex-en">I have no plans today.</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n4comparisons-degree">
+<h3 class="category-name">Comparisons &amp; degree</h3>
+<article class="grammar-point" id="point-n4より-のほうが-comparison" data-search="〜より / 〜のほうが (comparison) a は b より [adj]; a のほうが b より [adj]">
+<header class="point-header">
+<h4 class="point-name">〜より / 〜のほうが (comparison)</h4>
+<div class="point-form">A は B より [adj]; A のほうが B より [adj]</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">より = &#x27;than&#x27;. のほうが marks the side that has more of the quality. Both can appear together or separately.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Questions: &#x27;AとB、どちらのほうが〜?&#x27;. Equal: 〜と同じくらい. Negative: 〜ほど〜ない (&#x27;not as ~ as&#x27;).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>猫<rt>ねこ</rt></ruby>より<ruby>犬<rt>いぬ</rt></ruby>のほうが<ruby>好<rt>す</rt></ruby>きです。</div><div class="ex-en">I like dogs more than cats.</div></li>
+<li class="example"><div class="ex-jp"><ruby>東京<rt>とうきょう</rt></ruby>は<ruby>大阪<rt>おおさか</rt></ruby>より<ruby>大<rt>おお</rt></ruby>きい。</div><div class="ex-en">Tokyo is bigger than Osaka.</div></li>
+<li class="example"><div class="ex-jp"><ruby>今日<rt>きょう</rt></ruby>は<ruby>昨日<rt>きのう</rt></ruby>ほど<ruby>暑<rt>あつ</rt></ruby>くない。</div><div class="ex-en">Today is not as hot as yesterday.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n4一番-superlative" data-search="一番 (superlative) [group] の中で x が一番 [adj]">
+<header class="point-header">
+<h4 class="point-name">一番 (superlative)</h4>
+<div class="point-form">[group] の中で X が一番 [adj]</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">一番 = &#x27;number one / most&#x27;. Group framed with 〜の中で. Question form: 何/どれ/誰が一番〜?</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Default superlative. もっとも is the formal alternative.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">クラスで<ruby>田中<rt>たなか</rt></ruby>さんが<ruby>一番<rt>いちばん</rt></ruby><ruby>背<rt>せ</rt></ruby>が<ruby>高<rt>たか</rt></ruby>い。</div><div class="ex-en">Tanaka is the tallest in the class.</div></li>
+<li class="example"><div class="ex-jp"><ruby>日本料理<rt>にほんりょうり</rt></ruby>の<ruby>中<rt>なか</rt></ruby>で<ruby>寿司<rt>すし</rt></ruby>が<ruby>一番<rt>いちばん</rt></ruby><ruby>好<rt>す</rt></ruby>きだ。</div><div class="ex-en">Of Japanese foods, I like sushi best.</div></li>
+<li class="example"><div class="ex-jp">これが<ruby>世界<rt>せかい</rt></ruby>で<ruby>一番<rt>いちばん</rt></ruby><ruby>高<rt>たか</rt></ruby>い<ruby>山<rt>やま</rt></ruby>です。</div><div class="ex-en">This is the tallest mountain in the world.</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n4giving-receiving">
+<h3 class="category-name">Giving &amp; receiving</h3>
+<article class="grammar-point" id="point-n4あげる-くれる-もらう" data-search="あげる / くれる / もらう x が y に z をあげる/くれる; x が y に z をもらう">
+<header class="point-header">
+<h4 class="point-name">あげる / くれる / もらう</h4>
+<div class="point-form">X が Y に Z をあげる/くれる; X が Y に Z をもらう</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">あげる: I/in-group give outward. くれる: someone gives to me/in-group. もらう: I/in-group receive. Direction of flow determines verb choice — not just &#x27;give&#x27; vs &#x27;receive&#x27;.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Track perspective. くれる carries &#x27;thank you&#x27; nuance. もらう puts focus on the receiver. Polite forms: さしあげる, くださる, いただく.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>私<rt>わたし</rt></ruby>は<ruby>友達<rt>ともだち</rt></ruby>に<ruby>本<rt>ほん</rt></ruby>をあげた。</div><div class="ex-en">I gave my friend a book.</div></li>
+<li class="example"><div class="ex-jp"><ruby>先生<rt>せんせい</rt></ruby>が<ruby>私<rt>わたし</rt></ruby>にペンをくれた。</div><div class="ex-en">The teacher gave me a pen.</div></li>
+<li class="example"><div class="ex-jp"><ruby>私<rt>わたし</rt></ruby>は<ruby>母<rt>はは</rt></ruby>にお<ruby>金<rt>きん</rt></ruby>をもらった。</div><div class="ex-en">I received money from my mom.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n4てあげる-てくれる-てもらう" data-search="〜てあげる / 〜てくれる / 〜てもらう verb-て + あげる/くれる/もらう">
+<header class="point-header">
+<h4 class="point-name">〜てあげる / 〜てくれる / 〜てもらう</h4>
+<div class="point-form">Verb-て + あげる/くれる/もらう</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Same directional logic as the plain verbs, but applied to an action (favor) rather than an object.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">〜てあげる can sound condescending — careful with this one. 〜てくれる expresses gratitude implicitly. 〜てもらう often translates as &#x27;have someone do X&#x27;.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>妹<rt>いもうと</rt></ruby>に<ruby>宿題<rt>しゅくだい</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えてあげた。</div><div class="ex-en">I taught my little sister her homework.</div></li>
+<li class="example"><div class="ex-jp"><ruby>友達<rt>ともだち</rt></ruby>が<ruby>駅<rt>えき</rt></ruby>まで<ruby>送<rt>おく</rt></ruby>ってくれた。</div><div class="ex-en">My friend gave me a ride to the station.</div></li>
+<li class="example"><div class="ex-jp"><ruby>先生<rt>せんせい</rt></ruby>に<ruby>推薦状<rt>すいせんじょう</rt></ruby>を<ruby>書<rt>か</rt></ruby>いてもらった。</div><div class="ex-en">I had the teacher write a recommendation letter.</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n4nominalization-relative-clauses">
+<h3 class="category-name">Nominalization &amp; relative clauses</h3>
+<article class="grammar-point" id="point-n4こと-の-nominalizer" data-search="〜こと / 〜の (nominalizer) plain verb + こと / の">
+<header class="point-header">
+<h4 class="point-name">〜こと / 〜の (nominalizer)</h4>
+<div class="point-form">Plain verb + こと / の</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Both turn a verb/clause into a noun. こと is more abstract/formal. の is for concrete/perceived actions. Some verbs require one or the other (好き usually takes こと; 見える/聞こえる require の).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">趣味は〜こと (hobbies). 〜のが好き/嫌い/上手 (concrete actions). 〜のを見た/聞いた (perceiving an event).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>私<rt>わたし</rt></ruby>の<ruby>趣味<rt>しゅみ</rt></ruby>は<ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>むことです。</div><div class="ex-en">My hobby is reading books.</div></li>
+<li class="example"><div class="ex-jp"><ruby>彼<rt>かれ</rt></ruby>が<ruby>泣<rt>な</rt></ruby>いているのを<ruby>見<rt>み</rt></ruby>た。</div><div class="ex-en">I saw him crying. (perceived event — requires の)</div></li>
+<li class="example"><div class="ex-jp"><ruby>日本語<rt>にほんご</rt></ruby>を<ruby>話<rt>はな</rt></ruby>すのが<ruby>好<rt>す</rt></ruby>きだ。</div><div class="ex-en">I like speaking Japanese.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n4relative-clauses-noun-modification" data-search="relative clauses (noun modification) [plain clause] + noun">
+<header class="point-header">
+<h4 class="point-name">Relative clauses (noun modification)</h4>
+<div class="point-form">[Plain clause] + Noun</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">The modifying clause precedes the noun directly — no relative pronoun. Subject in the clause uses が (not は). Verb in plain form.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Backbone of natural Japanese. &#x27;The book I read&#x27;, &#x27;the person who came&#x27; — all single noun phrases. Watch for embedded clauses that look long to English ears.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>私<rt>わたし</rt></ruby>が<ruby>昨日<rt>きのう</rt></ruby><ruby>読<rt>よ</rt></ruby>んだ<ruby>本<rt>ほん</rt></ruby>は<ruby>面白<rt>おもしろ</rt></ruby>かった。</div><div class="ex-en">The book I read yesterday was interesting.</div></li>
+<li class="example"><div class="ex-jp"><ruby>日本語<rt>にほんご</rt></ruby>が<ruby>話<rt>はな</rt></ruby>せる<ruby>人<rt>ひと</rt></ruby>を<ruby>探<rt>さが</rt></ruby>している。</div><div class="ex-en">I&#x27;m looking for a person who can speak Japanese.</div></li>
+<li class="example"><div class="ex-jp">これは<ruby>母<rt>はは</rt></ruby>が<ruby>作<rt>つく</rt></ruby>ったケーキです。</div><div class="ex-en">This is the cake my mom made.</div></li>
+</ul>
+</article>
+</div>
+</section>
+<section class="level-section" id="level-N3" data-level="N3" style="--level-color:#7a2828">
+<div class="level-header">
+<div class="level-mark"><span class="level-code">N3</span></div>
+<div class="level-title-block">
+<h2 class="level-tagline">The bridge</h2>
+<p class="level-description">Potential, passive, causative, commands, all conditionals, hearsay and evidentiality, keigo.</p>
+</div>
+</div>
+<div class="category" id="cat-n3potential-passive-causative-commands">
+<h3 class="category-name">Potential / Passive / Causative / Commands</h3>
+<article class="grammar-point" id="point-n3potential-can-do" data-search="potential (can do) 〜られる / 〜える">
+<header class="point-header">
+<h4 class="point-name">Potential (can do)</h4>
+<div class="point-form">〜られる / 〜える</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Ichidan: drop る + られる. Godan: change u→eru. Irregular: する→できる, 来る→来られる. Casual ichidan drops ら (ら抜き言葉).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Express ability. Note: 分かる, できる are already potential — don&#x27;t double-conjugate. Object often takes が, not を.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>食<rt>た</rt></ruby>べられる</div><div class="ex-en">can eat</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>寝<rt>ね</rt></ruby>られる</div><div class="ex-en">can sleep</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>起<rt>お</rt></ruby>きられる</div><div class="ex-en">can wake up</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>飲<rt>の</rt></ruby>める</div><div class="ex-en">can drink</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>行<rt>い</rt></ruby>ける</div><div class="ex-en">can go</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>話<rt>はな</rt></ruby>せる</div><div class="ex-en">can speak / talk</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n3passive-and-adversative-passive" data-search="passive (and adversative passive) 〜られる / 〜れる">
+<header class="point-header">
+<h4 class="point-name">Passive (and adversative passive)</h4>
+<div class="point-form">〜られる / 〜れる</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Ichidan: drop る + られる. Godan: a-stem + れる. Irregular: する→される, 来る→来られる. Same form as potential for ichidan — context disambiguates.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Direct passive (X was Y&#x27;d) and &#x27;suffering passive&#x27; (I was inconvenienced by X doing Y) — the latter has no clean English equivalent. Agent marked with に.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>褒<rt>ほ</rt></ruby>められた</div><div class="ex-en">was praised</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>見<rt>み</rt></ruby>られた</div><div class="ex-en">was seen / got seen</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>助<rt>たす</rt></ruby>けられた</div><div class="ex-en">was helped</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>叱<rt>しか</rt></ruby>られた</div><div class="ex-en">was scolded</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>雨<rt>あめ</rt></ruby>に<ruby>降<rt>ふ</rt></ruby>られた</div><div class="ex-en">got rained on (adversative)</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>友達<rt>ともだち</rt></ruby>に<ruby>来<rt>こ</rt></ruby>られた</div><div class="ex-en">had a friend show up (inconveniently)</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n3causative" data-search="causative 〜させる / 〜せる">
+<header class="point-header">
+<h4 class="point-name">Causative</h4>
+<div class="point-form">〜させる / 〜せる</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Ichidan: drop る + させる. Godan: a-stem + せる. Irregular: する→させる, 来る→来させる. 〜させていただく is humble keigo.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Make/let someone do something. Two readings: forced (使役) vs permitted. に for the do-er when there&#x27;s an object, を when there isn&#x27;t.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>食<rt>た</rt></ruby>べさせる</div><div class="ex-en">make/let (someone) eat</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>見<rt>み</rt></ruby>させる</div><div class="ex-en">make/let (someone) see</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>考<rt>かんが</rt></ruby>えさせる</div><div class="ex-en">make (someone) think</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>待<rt>ま</rt></ruby>たせる</div><div class="ex-en">make (someone) wait</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>行<rt>い</rt></ruby>かせる</div><div class="ex-en">let (someone) go</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>飲<rt>の</rt></ruby>ませる</div><div class="ex-en">make/let (someone) drink</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n3commands-imperative" data-search="commands (imperative) 〜ろ / 〜え / 〜なさい / 〜な">
+<header class="point-header">
+<h4 class="point-name">Commands (imperative)</h4>
+<div class="point-form">〜ろ / 〜え / 〜なさい / 〜な</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Ichidan: drop る + ろ. Godan: change u→e. 〜なさい (firm but polite, parental). 〜な after dict. form = prohibitive (don&#x27;t do).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Plain imperative is rough — anime/manga, sports coaching, anger. 〜なさい is what teachers/parents use. Most polite requests use 〜てください instead.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>食<rt>た</rt></ruby>べろ</div><div class="ex-en">Eat! (rough)</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>起<rt>お</rt></ruby>きろ</div><div class="ex-en">Wake up! (rough)</div></li>
+<li class="example"><div class="ex-jp"><ruby>一段<rt>いちだん</rt></ruby>: <ruby>見<rt>み</rt></ruby>ろ</div><div class="ex-en">Look! (rough)</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>行<rt>い</rt></ruby>け</div><div class="ex-en">Go!</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>待<rt>ま</rt></ruby>て</div><div class="ex-en">Wait!</div></li>
+<li class="example"><div class="ex-jp"><ruby>五段<rt>ごだん</rt></ruby>: <ruby>走<rt>はし</rt></ruby>るな</div><div class="ex-en">Don&#x27;t run!</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n3conditionals-connectives">
+<h3 class="category-name">Conditionals &amp; connectives</h3>
+<article class="grammar-point" id="point-n3から-ので-because" data-search="〜から / 〜ので (because) clause + から / ので, then result clause">
+<header class="point-header">
+<h4 class="point-name">〜から / 〜ので (because)</h4>
+<div class="point-form">Clause + から / ので, then result clause</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">から: attaches to plain or polite form. ので: attaches to plain form; な-adj/noun use な before ので (静かなので). ので is softer.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">から is direct/personal (giving your reason). ので is softer/objective — used in apologies and polite explanations.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>疲<rt>つか</rt></ruby>れたから、もう<ruby>寝<rt>ね</rt></ruby>ます。</div><div class="ex-en">I&#x27;m tired, so I&#x27;m going to bed now.</div></li>
+<li class="example"><div class="ex-jp"><ruby>時間<rt>じかん</rt></ruby>がないので、<ruby>急<rt>いそ</rt></ruby>ぎましょう。</div><div class="ex-en">We don&#x27;t have time, so let&#x27;s hurry.</div></li>
+<li class="example"><div class="ex-jp"><ruby>雨<rt>あめ</rt></ruby>なので、<ruby>行<rt>い</rt></ruby>きたくないです。</div><div class="ex-en">It&#x27;s raining, so I don&#x27;t want to go.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n3たら-if-when" data-search="〜たら (if/when) verb-past form + ら">
+<header class="point-header">
+<h4 class="point-name">〜たら (if/when)</h4>
+<div class="point-form">Verb-past form + ら</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Most versatile conditional. Built on past form: 食べる→食べたら, 行く→行ったら. Can be hypothetical or temporal (&#x27;once X happens&#x27;).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Default conditional when unsure which to use. Also works as &#x27;when&#x27; for one-off future events: &#x27;駅に着いたら電話して&#x27; (call me when you arrive).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">お<ruby>金<rt>きん</rt></ruby>があったら、<ruby>旅行<rt>りょこう</rt></ruby>に<ruby>行<rt>い</rt></ruby>きたい。</div><div class="ex-en">If I had money, I&#x27;d want to travel.</div></li>
+<li class="example"><div class="ex-jp"><ruby>駅<rt>えき</rt></ruby>に<ruby>着<rt>つ</rt></ruby>いたら、<ruby>電話<rt>でんわ</rt></ruby>してください。</div><div class="ex-en">When you arrive at the station, please call.</div></li>
+<li class="example"><div class="ex-jp"><ruby>寒<rt>さむ</rt></ruby>かったら、<ruby>上着<rt>うわぎ</rt></ruby>を<ruby>着<rt>き</rt></ruby>てね。</div><div class="ex-en">If it&#x27;s cold, wear a jacket.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n3ば-if-hypothetical" data-search="〜ば (if, hypothetical) verb e-stem + ば; い-adj drop い + ければ">
+<header class="point-header">
+<h4 class="point-name">〜ば (if, hypothetical)</h4>
+<div class="point-form">Verb e-stem + ば; い-adj drop い + ければ</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Verbs: う→え + ば (行けば, 食べれば). い-adj: 安い→安ければ. な-adj/noun: 〜なら (uses なら instead).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Hypothetical/general conditional. Common in proverbs and advice. Can&#x27;t easily express counterfactual past — use 〜たら for that.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>早<rt>はや</rt></ruby>く<ruby>起<rt>お</rt></ruby>きれば、<ruby>間<rt>まにあ</rt></ruby>に<ruby>合<rt>まにあ</rt></ruby>う。</div><div class="ex-en">If you wake up early, you&#x27;ll make it on time.</div></li>
+<li class="example"><div class="ex-jp"><ruby>安<rt>やす</rt></ruby>ければ、<ruby>買<rt>か</rt></ruby>います。</div><div class="ex-en">If it&#x27;s cheap, I&#x27;ll buy it.</div></li>
+<li class="example"><div class="ex-jp"><ruby>練習<rt>れんしゅう</rt></ruby>すれば、<ruby>上手<rt>じょうず</rt></ruby>になる。</div><div class="ex-en">If you practice, you&#x27;ll get better.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n3と-natural-consequence" data-search="〜と (natural consequence) dict. form + と">
+<header class="point-header">
+<h4 class="point-name">〜と (natural consequence)</h4>
+<div class="point-form">Dict. form + と</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Plain non-past + と. Always automatic/inevitable consequence — &#x27;when X, Y always happens&#x27;.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Natural laws, habits, directions (&#x27;go straight and you&#x27;ll see it&#x27;). Can&#x27;t use と with volitional/command/request in the result clause.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>春<rt>はる</rt></ruby>になると、<ruby>桜<rt>さくら</rt></ruby>が<ruby>咲<rt>さ</rt></ruby>く。</div><div class="ex-en">When spring comes, the cherry blossoms bloom.</div></li>
+<li class="example"><div class="ex-jp">ボタンを<ruby>押<rt>お</rt></ruby>すと、ドアが<ruby>開<rt>ひら</rt></ruby>く。</div><div class="ex-en">Press the button and the door opens.</div></li>
+<li class="example"><div class="ex-jp">この<ruby>道<rt>みち</rt></ruby>をまっすぐ<ruby>行<rt>い</rt></ruby>くと、<ruby>駅<rt>えき</rt></ruby>があります。</div><div class="ex-en">Go straight on this road and there&#x27;s the station.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n3なら-topical-conditional" data-search="〜なら (topical conditional) noun/clause + なら">
+<header class="point-header">
+<h4 class="point-name">〜なら (topical conditional)</h4>
+<div class="point-form">Noun/clause + なら</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Attached after a topic the speaker is responding to. &#x27;Given that X / If we&#x27;re talking about X, then Y&#x27;.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Often introduces advice or counter-suggestion. &#x27;日本に行くなら、京都がいい&#x27; = &#x27;if you&#x27;re going to Japan (as you said), Kyoto is good&#x27;.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>日本<rt>にほん</rt></ruby>に<ruby>行<rt>い</rt></ruby>くなら、<ruby>京都<rt>きょうと</rt></ruby>がいいよ。</div><div class="ex-en">If you&#x27;re going to Japan, Kyoto is good.</div></li>
+<li class="example"><div class="ex-jp"><ruby>寿司<rt>すし</rt></ruby>なら、あの<ruby>店<rt>みせ</rt></ruby>が<ruby>一番<rt>いちばん</rt></ruby>。</div><div class="ex-en">If it&#x27;s sushi (you want), that shop is the best.</div></li>
+<li class="example"><div class="ex-jp">そんなに<ruby>疲<rt>つか</rt></ruby>れているなら、<ruby>休<rt>やす</rt></ruby>んだら？</div><div class="ex-en">If you&#x27;re that tired, why not rest?</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n3けど-が-but-andsoft" data-search="〜けど / 〜が (but / and-soft) clause + けど / が + clause">
+<header class="point-header">
+<h4 class="point-name">〜けど / 〜が (but / and-soft)</h4>
+<div class="point-form">Clause + けど / が + clause</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">けど is casual; が is more formal/written. Often used as a soft &#x27;and&#x27; to introduce context rather than true contrast.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Watch for the soft-intro use: &#x27;すみませんが…&#x27; isn&#x27;t &#x27;I&#x27;m sorry but&#x27; — it&#x27;s &#x27;Excuse me…&#x27; Soft hedge before requests.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>高<rt>たか</rt></ruby>いけど、<ruby>買<rt>か</rt></ruby>います。</div><div class="ex-en">It&#x27;s expensive, but I&#x27;ll buy it.</div></li>
+<li class="example"><div class="ex-jp">すみませんが、<ruby>駅<rt>えき</rt></ruby>はどこですか？</div><div class="ex-en">Excuse me, where is the station?</div></li>
+<li class="example"><div class="ex-jp"><ruby>彼<rt>かれ</rt></ruby>は<ruby>来<rt>く</rt></ruby>ると<ruby>言<rt>い</rt></ruby>ったけど、まだ<ruby>来<rt>こ</rt></ruby>ない。</div><div class="ex-en">He said he&#x27;d come, but he&#x27;s still not here.</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n3reported-speech-evidentiality">
+<h3 class="category-name">Reported speech &amp; evidentiality</h3>
+<article class="grammar-point" id="point-n3と思う-と言う" data-search="〜と思う / 〜と言う plain form + と思う / と言う">
+<header class="point-header">
+<h4 class="point-name">〜と思う / 〜と言う</h4>
+<div class="point-form">Plain form + と思う / と言う</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">と marks the quoted/thought content. Always use plain form before と — never です/ます inside the quote (unless quoting verbatim).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">〜と思う: &#x27;I think that…&#x27; 〜と言っていた: &#x27;they said that…&#x27; (past progressive form is common for reported speech).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">これは<ruby>難<rt>むずか</rt></ruby>しいと<ruby>思<rt>おも</rt></ruby>う。</div><div class="ex-en">I think this is difficult.</div></li>
+<li class="example"><div class="ex-jp"><ruby>彼<rt>かれ</rt></ruby>は<ruby>来<rt>こ</rt></ruby>ないと<ruby>言<rt>い</rt></ruby>った。</div><div class="ex-en">He said he isn&#x27;t coming.</div></li>
+<li class="example"><div class="ex-jp"><ruby>母<rt>はは</rt></ruby>は<ruby>心配<rt>しんぱい</rt></ruby>だと<ruby>言<rt>い</rt></ruby>っていた。</div><div class="ex-en">Mom was saying she&#x27;s worried.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n3そうだ-hearsay" data-search="〜そうだ (hearsay) plain form + そうだ">
+<header class="point-header">
+<h4 class="point-name">〜そうだ (hearsay)</h4>
+<div class="point-form">Plain form + そうだ</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Attaches to plain form — including です/だ→だそうだ. CAUTION: 〜そう off the i-stem of a verb (食べそう) means &#x27;looks like&#x27; — different grammar.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">&#x27;I heard that…&#x27; Reports something the speaker learned from elsewhere. Source can be marked: 〜によると…そうだ (&#x27;according to…&#x27;).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>田中<rt>たなか</rt></ruby>さんは<ruby>結婚<rt>けっこん</rt></ruby>するそうだ。</div><div class="ex-en">I hear Tanaka is getting married.</div></li>
+<li class="example"><div class="ex-jp"><ruby>天気予報<rt>てんきよほう</rt></ruby>によると、<ruby>明日<rt>あした</rt></ruby>は<ruby>雨<rt>あめ</rt></ruby>だそうだ。</div><div class="ex-en">According to the forecast, it&#x27;ll rain tomorrow.</div></li>
+<li class="example"><div class="ex-jp">あの<ruby>店<rt>みせ</rt></ruby>のラーメンは<ruby>美味<rt>おい</rt></ruby>しいそうだ。</div><div class="ex-en">I hear the ramen at that shop is good.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n3らしい-apparent-hearsay" data-search="〜らしい (apparent / hearsay) plain form + らしい (drops だ for nouns/な-adj)">
+<header class="point-header">
+<h4 class="point-name">〜らしい (apparent / hearsay)</h4>
+<div class="point-form">Plain form + らしい (drops だ for nouns/な-adj)</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Noun + らしい (no だ): 学生らしい. な-adj drops な. Conjugates like い-adj.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Reasoned inference based on what the speaker heard or observed — &#x27;apparently&#x27;. Less direct than 〜そうだ. Also: &#x27;typical of X&#x27; (男らしい = manly).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>彼<rt>かれ</rt></ruby>は<ruby>病気<rt>びょうき</rt></ruby>らしい。</div><div class="ex-en">Apparently he&#x27;s sick.</div></li>
+<li class="example"><div class="ex-jp"><ruby>会議<rt>かいぎ</rt></ruby>は<ruby>中止<rt>ちゅうし</rt></ruby>になったらしい。</div><div class="ex-en">It seems the meeting got canceled.</div></li>
+<li class="example"><div class="ex-jp">あの<ruby>子<rt>こ</rt></ruby>は<ruby>本当<rt>ほんとう</rt></ruby>に<ruby>学生<rt>がくせい</rt></ruby>らしい。</div><div class="ex-en">That kid really looks/acts like a student.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n3みたい-ようだ-seems" data-search="〜みたい / 〜ようだ (seems) plain form + みたい (casual) / ようだ (formal)">
+<header class="point-header">
+<h4 class="point-name">〜みたい / 〜ようだ (seems)</h4>
+<div class="point-form">Plain form + みたい (casual) / ようだ (formal)</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Noun direct + みたい/のようだ (no だ). な-adj drops な. みたい conjugates like a な-adj.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Subjective impression based on direct observation — &#x27;looks/seems like&#x27;. Also for comparison: 子供みたい = &#x27;like a child&#x27;.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>っているみたいだ。</div><div class="ex-en">It looks like it&#x27;s raining.</div></li>
+<li class="example"><div class="ex-jp"><ruby>彼<rt>かれ</rt></ruby>は<ruby>疲<rt>つか</rt></ruby>れているようだ。</div><div class="ex-en">He seems tired.</div></li>
+<li class="example"><div class="ex-jp">まるで<ruby>夢<rt>ゆめ</rt></ruby>みたいだ。</div><div class="ex-en">It&#x27;s just like a dream.</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n3more-てform-uses">
+<h3 class="category-name">More て-form uses</h3>
+<article class="grammar-point" id="point-n3てしまう-ちゃう-regret-completion" data-search="〜てしまう / 〜ちゃう (regret/completion) verb-て + しまう; casual: 〜ちゃう / 〜じゃう">
+<header class="point-header">
+<h4 class="point-name">〜てしまう / 〜ちゃう (regret/completion)</h4>
+<div class="point-form">Verb-て + しまう; casual: 〜ちゃう / 〜じゃう</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Te + しまう. Casual reductions: 〜てしまう→〜ちゃう, 〜でしまう→〜じゃう. Past: 〜てしまった / 〜ちゃった.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Two nuances: (1) completed an action thoroughly, (2) did something regrettable or unintended. Context tells which. &#x27;I ate it all&#x27; OR &#x27;I accidentally ate it&#x27;.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">ケーキを<ruby>全部<rt>ぜんぶ</rt></ruby><ruby>食<rt>た</rt></ruby>べてしまった。</div><div class="ex-en">I ate all the cake. (completion or regret — context)</div></li>
+<li class="example"><div class="ex-jp"><ruby>財布<rt>さいふ</rt></ruby>を<ruby>忘<rt>わす</rt></ruby>れちゃった。</div><div class="ex-en">I (accidentally) forgot my wallet.</div></li>
+<li class="example"><div class="ex-jp"><ruby>宿題<rt>しゅくだい</rt></ruby>、もうやっちゃった？</div><div class="ex-en">Did you finish the homework already?</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n3keigo-politeness-levels">
+<h3 class="category-name">Keigo (politeness levels)</h3>
+<article class="grammar-point" id="point-n3honorific-尊敬語-elevating-others" data-search="honorific 尊敬語 (elevating others) お + verb-stem + になる; 〜られる; irregular forms">
+<header class="point-header">
+<h4 class="point-name">Honorific 尊敬語 (elevating others)</h4>
+<div class="point-form">お + verb-stem + になる; 〜られる; irregular forms</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Three patterns: (1) お〜になる construction, (2) the 〜られる form (same as passive), (3) irregular replacements: 行く→いらっしゃる, 食べる→召し上がる, 言う→おっしゃる, する→なさる, 見る→ご覧になる, 来る→いらっしゃる.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">For the listener&#x27;s or a third party&#x27;s actions when they&#x27;re higher status (customers, bosses, elders). Never use for yourself.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>社長<rt>しゃちょう</rt></ruby>はもうお<ruby>帰<rt>かえ</rt></ruby>りになりました。</div><div class="ex-en">The president has already gone home.</div></li>
+<li class="example"><div class="ex-jp"><ruby>先生<rt>せんせい</rt></ruby>は<ruby>何<rt>なに</rt></ruby>を<ruby>召<rt>め</rt></ruby>し<ruby>上<rt>うえ</rt></ruby>がりますか？</div><div class="ex-en">What will you have, sensei?</div></li>
+<li class="example"><div class="ex-jp">お<ruby>客様<rt>きゃくさま</rt></ruby>がいらっしゃいました。</div><div class="ex-en">A customer has arrived.</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n3humble-謙譲語-lowering-self" data-search="humble 謙譲語 (lowering self) お + verb-stem + する/いたす; irregular forms">
+<header class="point-header">
+<h4 class="point-name">Humble 謙譲語 (lowering self)</h4>
+<div class="point-form">お + verb-stem + する/いたす; irregular forms</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Two patterns: (1) お〜する/いたす, (2) irregulars: 行く・来る→参る, 食べる・飲む→いただく, 言う→申す, する→いたす, 見る→拝見する, もらう→いただく, あげる→さしあげる. 〜させていただく is super-humble.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">For YOUR OWN actions when you&#x27;re addressing someone higher status. Lowers you (and your in-group, e.g., your company) relative to the listener.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>明日<rt>あした</rt></ruby>、ご<ruby>連絡<rt>れんらく</rt></ruby>いたします。</div><div class="ex-en">I will contact you tomorrow.</div></li>
+<li class="example"><div class="ex-jp"><ruby>資料<rt>しりょう</rt></ruby>を<ruby>拝見<rt>はいけん</rt></ruby>しました。</div><div class="ex-en">I have looked at the documents.</div></li>
+<li class="example"><div class="ex-jp"><ruby>田中<rt>たなか</rt></ruby>と<ruby>申<rt>もう</rt></ruby>します。</div><div class="ex-en">I am Tanaka.</div></li>
+</ul>
+</article>
+</div>
+</section>
+<section class="level-section" id="level-N2" data-level="N2" style="--level-color:#7a2828">
+<div class="level-header">
+<div class="level-mark"><span class="level-code">N2</span></div>
+<div class="level-title-block">
+<h2 class="level-tagline">Upper intermediate</h2>
+<p class="level-description">Logical inference, purpose, simultaneity, business keigo, proportional structures.</p>
+</div>
+</div>
+<div class="category" id="cat-n2logical-inference-modality">
+<h3 class="category-name">Logical inference &amp; modality</h3>
+<article class="grammar-point" id="point-n2はず-should-be-expected-to" data-search="〜はず (should be / expected to) plain form + はず; な-adj+な+はず, noun+の+はず">
+<header class="point-header">
+<h4 class="point-name">〜はず (should be / expected to)</h4>
+<div class="point-form">Plain form + はず; な-adj+な+はず, noun+の+はず</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Indicates strong expectation based on reasoning. Past: 〜はずだった (was supposed to). Negative: 〜はずがない (&#x27;there&#x27;s no way&#x27;).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Don&#x27;t confuse with English &#x27;should&#x27; (obligation) — はず is purely about likelihood/expectation. 〜はずがない is a common emphatic &#x27;no way!&#x27;.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>彼<rt>かれ</rt></ruby>はもう<ruby>着<rt>つ</rt></ruby>いているはずだ。</div><div class="ex-en">He should have arrived by now.</div></li>
+<li class="example"><div class="ex-jp">そんなはずがない！</div><div class="ex-en">There&#x27;s no way that&#x27;s true!</div></li>
+<li class="example"><div class="ex-jp">3<ruby>時<rt>じ</rt></ruby>に<ruby>来<rt>く</rt></ruby>るはずだったのに。</div><div class="ex-en">He was supposed to come at 3, but...</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n2かもしれない-に違いない" data-search="〜かもしれない / 〜に違いない plain form + かもしれない / に違いない">
+<header class="point-header">
+<h4 class="point-name">〜かもしれない / 〜に違いない</h4>
+<div class="point-form">Plain form + かもしれない / に違いない</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">かもしれない: &#x27;might be&#x27; (genuine uncertainty). に違いない: &#x27;must be / no doubt&#x27; (strong inference). Both attach to plain form; nouns/な-adj drop だ.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Spectrum: かもしれない (might, ~50%) &lt; はず (expected) &lt; に違いない (must be, near certain).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>明日<rt>あした</rt></ruby>は<ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>るかもしれない。</div><div class="ex-en">It might rain tomorrow.</div></li>
+<li class="example"><div class="ex-jp"><ruby>彼<rt>かれ</rt></ruby>は<ruby>知<rt>し</rt></ruby>らないかもしれません。</div><div class="ex-en">He might not know.</div></li>
+<li class="example"><div class="ex-jp"><ruby>犯人<rt>はんにん</rt></ruby>はあの<ruby>男<rt>おとこ</rt></ruby>に<ruby>違<rt>ちが</rt></ruby>いない。</div><div class="ex-en">The culprit must be that man.</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n2purpose-simultaneity">
+<h3 class="category-name">Purpose &amp; simultaneity</h3>
+<article class="grammar-point" id="point-n2ように-ために-purpose" data-search="〜ように / 〜ために (purpose) dict./potential + ように; dict. / noun-の + ために">
+<header class="point-header">
+<h4 class="point-name">〜ように / 〜ために (purpose)</h4>
+<div class="point-form">Dict./potential + ように; dict. / noun-の + ために</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">ように: with potential/non-volitional (見えるように) or negative (忘れないように) — purpose for a state. ために: with volitional/intentional action — purpose for a goal.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Same subject across clauses → ために. Different subject or non-controllable outcome → ように. Noun + のために = &#x27;for the sake of X&#x27;.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>日本語<rt>にほんご</rt></ruby>が<ruby>話<rt>はな</rt></ruby>せるように<ruby>毎日<rt>まいにち</rt></ruby><ruby>勉強<rt>べんきょう</rt></ruby>する。</div><div class="ex-en">I study every day so I can speak Japanese. (ように — potential)</div></li>
+<li class="example"><div class="ex-jp"><ruby>家<rt>いえ</rt></ruby>を<ruby>買<rt>か</rt></ruby>うためにお<ruby>金<rt>きん</rt></ruby>を<ruby>貯<rt>た</rt></ruby>めている。</div><div class="ex-en">I&#x27;m saving money to buy a house. (ために — goal)</div></li>
+<li class="example"><div class="ex-jp"><ruby>忘<rt>わす</rt></ruby>れないようにメモした。</div><div class="ex-en">I took a note so I wouldn&#x27;t forget. (ように — negative)</div></li>
+</ul>
+</article>
+<article class="grammar-point" id="point-n2ながら-while-doing" data-search="〜ながら (while doing) verb i-stem + ながら">
+<header class="point-header">
+<h4 class="point-name">〜ながら (while doing)</h4>
+<div class="point-form">Verb i-stem + ながら</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Drop ます or use the masu-stem: 食べる→食べながら, 飲む→飲みながら. Two actions by the SAME subject, simultaneous. Main action is the second clause.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Only same-subject simultaneity. For different subjects use 〜間に. Cannot use with state verbs (ある, いる).</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>音楽<rt>おんがく</rt></ruby>を<ruby>聞<rt>き</rt></ruby>きながら<ruby>勉強<rt>べんきょう</rt></ruby>する。</div><div class="ex-en">I study while listening to music.</div></li>
+<li class="example"><div class="ex-jp"><ruby>歩<rt>ある</rt></ruby>きながら<ruby>話<rt>はな</rt></ruby>しましょう。</div><div class="ex-en">Let&#x27;s talk while walking.</div></li>
+<li class="example"><div class="ex-jp">テレビを<ruby>見<rt>み</rt></ruby>ながらご<ruby>飯<rt>めし</rt></ruby>を<ruby>食<rt>た</rt></ruby>べる。</div><div class="ex-en">I eat while watching TV.</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n2business-keigo">
+<h3 class="category-name">Business keigo</h3>
+<article class="grammar-point" id="point-n2business-keigo-おいたします-でございます" data-search="business keigo (お〜いたします, 〜でございます) お/ご + verb-stem + いたします; noun + でございます">
+<header class="point-header">
+<h4 class="point-name">Business keigo (お〜いたします, 〜でございます)</h4>
+<div class="point-form">お/ご + verb-stem + いたします; noun + でございます</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">お〜いたします: super-humble form of する. ございます: ultra-polite copula (です). お待ちしております: &#x27;we await&#x27; (humble continuous).</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Customer service, formal business, announcements. Sounds stiff/over-the-top in casual contexts. Memorize as set phrases for common situations.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp">お<ruby>電話<rt>でんわ</rt></ruby>お<ruby>待<rt>ま</rt></ruby>ちしております。</div><div class="ex-en">We await your call.</div></li>
+<li class="example"><div class="ex-jp">こちらが<ruby>資料<rt>しりょう</rt></ruby>でございます。</div><div class="ex-en">Here are the documents.</div></li>
+<li class="example"><div class="ex-jp">ご<ruby>案内<rt>あんない</rt></ruby>いたします。</div><div class="ex-en">I will show you the way.</div></li>
+</ul>
+</article>
+</div>
+<div class="category" id="cat-n2degree-emphasis">
+<h3 class="category-name">Degree &amp; emphasis</h3>
+<article class="grammar-point" id="point-n2ばほど-the-more-the-more" data-search="〜ば〜ほど (the more... the more) verb-ば + same verb dict. form + ほど">
+<header class="point-header">
+<h4 class="point-name">〜ば〜ほど (the more... the more)</h4>
+<div class="point-form">Verb-ば + same verb dict. form + ほど</div>
+</header>
+<div class="point-meta">
+<div class="meta-row meta-form"><span class="meta-label">Form</span><span class="meta-text">Repeat the verb: 食べれば食べるほど, 考えれば考えるほど. い-adj: 高ければ高いほど. な-adj: 静かなら静かなほど.</span></div>
+<div class="meta-row meta-use"><span class="meta-label">Use</span><span class="meta-text">Proportional relationship. &#x27;The more X, the more Y&#x27;. Common in evaluations, advice, observations.</span></div>
+</div>
+<ul class="examples">
+<li class="example"><div class="ex-jp"><ruby>勉強<rt>べんきょう</rt></ruby>すればするほど、<ruby>難<rt>むずか</rt></ruby>しくなる。</div><div class="ex-en">The more I study, the harder it gets.</div></li>
+<li class="example"><div class="ex-jp"><ruby>考<rt>かんが</rt></ruby>えれば<ruby>考<rt>かんが</rt></ruby>えるほど、わからなくなる。</div><div class="ex-en">The more I think about it, the less I understand.</div></li>
+<li class="example"><div class="ex-jp"><ruby>早<rt>はや</rt></ruby>ければ<ruby>早<rt>はや</rt></ruby>いほどいい。</div><div class="ex-en">The earlier the better.</div></li>
+</ul>
+</article>
+</div>
+</section>
+<div class="no-results" id="no-results">No grammar points match your search.</div>
+</main>
+
+<footer>
+  <p>
+    Mappings draw from JLPT level conventions; some grammar points sit at level boundaries
+    (textbooks differ on whether 〜たい is N5 or N4, for instance) — treat the levels as a rough guide.
+  </p>
+  <p>
+    Furigana readings were hand-corrected to address common automated-transcription errors
+    (e.g., 今日 reading as きょう not こんにち; 日本 as にほん not にっぽん; 入って as はいって).
+    If you spot a wrong reading, let me know and I'll fix it.
+  </p>
+  <p class="footer-stamp">参考資料</p>
+</footer>
+
+<script>
+(function() {
+  const searchInput = document.getElementById('search');
+  const noResults = document.getElementById('no-results');
+  const points = document.querySelectorAll('.grammar-point');
+  const categories = document.querySelectorAll('.category');
+  const levels = document.querySelectorAll('.level-section');
+
+  function filter() {
+    const q = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    points.forEach(p => {
+      if (!q || p.dataset.search.includes(q)) {
+        p.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        p.classList.add('hidden');
+      }
+    });
+
+    // Hide categories with no visible points
+    categories.forEach(c => {
+      const visible = c.querySelectorAll('.grammar-point:not(.hidden)').length;
+      c.style.display = visible > 0 ? '' : 'none';
+    });
+
+    // Hide levels with no visible categories
+    levels.forEach(l => {
+      const visible = Array.from(l.querySelectorAll('.category')).filter(c => c.style.display !== 'none').length;
+      l.style.display = visible > 0 ? '' : 'none';
+    });
+
+    noResults.classList.toggle('show', visibleCount === 0 && q.length > 0);
+  }
+
+  searchInput.addEventListener('input', filter);
+
+  // Keyboard shortcut: / to focus search
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+    }
+    if (e.key === 'Escape' && document.activeElement === searchInput) {
+      searchInput.value = '';
+      filter();
+      searchInput.blur();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
