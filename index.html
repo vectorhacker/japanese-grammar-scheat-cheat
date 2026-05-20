@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A simplified, opinionated reference for Genki I grammar. Lessons 1–12, rewritten for clarity.">
+<meta name="description" content="A simplified, opinionated reference for Japanese grammar at the N5 level. Genki I lessons 1–12 plus a Bridge to N5 section covering obligation, casual speech, connectors, and more.">
 <title>Genki I Grammar · A Simplified Reference</title>
 
 <!-- Fonts -->
@@ -92,11 +92,11 @@
 /* DARK THEME ---------------------------------------------------------- */
 [data-theme="dark"] {
   --bg: #14110d;           /* deep warm ink */
-  --bg-elev: #1c1814;
-  --bg-subtle: #1a1612;
-  --bg-code: #221d17;
-  --border: #2e2820;
-  --border-strong: #443c2e;
+  --bg-elev: #1f1a14;
+  --bg-subtle: #0c0a07;    /* sidebar — slightly DARKER than main for contrast */
+  --bg-code: #251f17;
+  --border: #322b22;
+  --border-strong: #4a4030;
 
   --ink: #ebe4d3;
   --ink-soft: #bcb29a;
@@ -130,11 +130,11 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     --bg: #14110d;
-    --bg-elev: #1c1814;
-    --bg-subtle: #1a1612;
-    --bg-code: #221d17;
-    --border: #2e2820;
-    --border-strong: #443c2e;
+    --bg-elev: #1f1a14;
+    --bg-subtle: #0c0a07;
+    --bg-code: #251f17;
+    --border: #322b22;
+    --border-strong: #4a4030;
     --ink: #ebe4d3;
     --ink-soft: #bcb29a;
     --ink-mute: #8a8170;
@@ -212,10 +212,13 @@ em.jp { font-family: var(--font-jp); font-style: normal; color: var(--accent); f
   padding: 2rem 1.25rem 1rem 1.75rem;
   flex-shrink: 0;
   background: var(--bg-subtle);
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--t-fast);
+  position: relative;
+  z-index: 2;
+  transition: box-shadow var(--t-fast);
 }
-.sidebar-head.scrolled { border-bottom-color: var(--border); }
+.sidebar-head.scrolled {
+  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.25);
+}
 .sidebar-scroll {
   flex: 1;
   overflow-y: auto;
@@ -576,6 +579,57 @@ em.jp { font-family: var(--font-jp); font-style: normal; color: var(--accent); f
   font-weight: 400;
 }
 
+/* Bridge divider — separates lessons from Bridge to N5 sections */
+.bridge-divider {
+  margin: 8rem 0 6rem;
+  scroll-margin-top: 1.5rem;
+}
+.bridge-divider-inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.bridge-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-strong), transparent);
+}
+.bridge-divider-label {
+  text-align: center;
+  max-width: 32em;
+}
+.bridge-divider-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.bridge-divider-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.6rem;
+  color: var(--ink);
+  font-variation-settings: "opsz" 144;
+}
+.bridge-divider-sub {
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-family: var(--font-display);
+}
+
+/* Section lessons (Bridge to N5) — subtle distinction */
+.lesson.section .lesson-header .num {
+  color: var(--accent);
+}
+
 /* Grammar point */
 .point {
   margin: 3rem 0;
@@ -913,7 +967,7 @@ table.conj tr:last-child td { border-bottom: none; }
     <div class="sidebar-head" id="sidebarHead">
       <a class="brand" href="#top">
         <div class="brand-title"><span class="jp">語</span>Genki Grammar</div>
-        <div class="brand-sub">Simplified · Lessons 1–12</div>
+        <div class="brand-sub">Simplified · Full N5</div>
       </a>
 
       <div class="search">
@@ -922,9 +976,9 @@ table.conj tr:last-child td { border-bottom: none; }
     </div>
 
     <div class="sidebar-scroll" id="sidebarScroll">
-      <div class="nav-section-title">Contents</div>
+      <div class="nav-section-title">Genki I · Lessons</div>
       <nav class="nav-list" id="navList">
-    <div class="nav-lesson" data-lesson="1">
+    <div class="nav-lesson" data-id="l1">
       <a class="nav-lesson-link" href="#l1">
         <span class="nav-lesson-num">L1</span>
         <span class="nav-lesson-title">Identity & Topics</span>
@@ -935,7 +989,7 @@ table.conj tr:last-child td { border-bottom: none; }
         <a class="nav-point" href="#l1-p3">NounのNoun</a>
       </div>
     </div>
-    <div class="nav-lesson" data-lesson="2">
+    <div class="nav-lesson" data-id="l2">
       <a class="nav-lesson-link" href="#l2">
         <span class="nav-lesson-num">L2</span>
         <span class="nav-lesson-title">Things, Places, Possession</span>
@@ -950,7 +1004,7 @@ table.conj tr:last-child td { border-bottom: none; }
         <a class="nav-point" href="#l2-p7">～ね / ～よ</a>
       </div>
     </div>
-    <div class="nav-lesson" data-lesson="3">
+    <div class="nav-lesson" data-id="l3">
       <a class="nav-lesson-link" href="#l3">
         <span class="nav-lesson-num">L3</span>
         <span class="nav-lesson-title">Verbs & Particles</span>
@@ -965,7 +1019,7 @@ table.conj tr:last-child td { border-bottom: none; }
         <a class="nav-point" href="#l3-p7">The topic particle は (revisited)</a>
       </div>
     </div>
-    <div class="nav-lesson" data-lesson="4">
+    <div class="nav-lesson" data-id="l4">
       <a class="nav-lesson-link" href="#l4">
         <span class="nav-lesson-num">L4</span>
         <span class="nav-lesson-title">Past Tense, Existence, Locations</span>
@@ -979,7 +1033,7 @@ table.conj tr:last-child td { border-bottom: none; }
         <a class="nav-point" href="#l4-p6">Counting with counters</a>
       </div>
     </div>
-    <div class="nav-lesson" data-lesson="5">
+    <div class="nav-lesson" data-id="l5">
       <a class="nav-lesson-link" href="#l5">
         <span class="nav-lesson-num">L5</span>
         <span class="nav-lesson-title">Adjectives & Liking</span>
@@ -993,7 +1047,7 @@ table.conj tr:last-child td { border-bottom: none; }
         <a class="nav-point" href="#l5-p6">～ましょう / ～ましょうか</a>
       </div>
     </div>
-    <div class="nav-lesson" data-lesson="6">
+    <div class="nav-lesson" data-id="l6">
       <a class="nav-lesson-link" href="#l6">
         <span class="nav-lesson-num">L6</span>
         <span class="nav-lesson-title">て-form, Permission, Prohibition</span>
@@ -1007,7 +1061,7 @@ table.conj tr:last-child td { border-bottom: none; }
         <a class="nav-point" href="#l6-p6">～から</a>
       </div>
     </div>
-    <div class="nav-lesson" data-lesson="7">
+    <div class="nav-lesson" data-id="l7">
       <a class="nav-lesson-link" href="#l7">
         <span class="nav-lesson-num">L7</span>
         <span class="nav-lesson-title">Progressive & Connecting Clauses</span>
@@ -1020,7 +1074,7 @@ table.conj tr:last-child td { border-bottom: none; }
         <a class="nav-point" href="#l7-p5">Counting people</a>
       </div>
     </div>
-    <div class="nav-lesson" data-lesson="8">
+    <div class="nav-lesson" data-id="l8">
       <a class="nav-lesson-link" href="#l8">
         <span class="nav-lesson-num">L8</span>
         <span class="nav-lesson-title">Short Forms — The Plain Form Toolkit</span>
@@ -1035,7 +1089,7 @@ table.conj tr:last-child td { border-bottom: none; }
         <a class="nav-point" href="#l8-p7">まだ ～ていません</a>
       </div>
     </div>
-    <div class="nav-lesson" data-lesson="9">
+    <div class="nav-lesson" data-id="l9">
       <a class="nav-lesson-link" href="#l9">
         <span class="nav-lesson-num">L9</span>
         <span class="nav-lesson-title">Past Plain Forms & から</span>
@@ -1048,7 +1102,7 @@ table.conj tr:last-child td { border-bottom: none; }
         <a class="nav-point" href="#l9-p5">～から (revisited) — giving reasons</a>
       </div>
     </div>
-    <div class="nav-lesson" data-lesson="10">
+    <div class="nav-lesson" data-id="l10">
       <a class="nav-lesson-link" href="#l10">
         <span class="nav-lesson-num">L10</span>
         <span class="nav-lesson-title">Comparisons & Nominalization</span>
@@ -1062,7 +1116,7 @@ table.conj tr:last-child td { border-bottom: none; }
         <a class="nav-point" href="#l10-p6">～なる</a>
       </div>
     </div>
-    <div class="nav-lesson" data-lesson="11">
+    <div class="nav-lesson" data-id="l11">
       <a class="nav-lesson-link" href="#l11">
         <span class="nav-lesson-num">L11</span>
         <span class="nav-lesson-title">～たい, ～たり, Experience</span>
@@ -1074,7 +1128,7 @@ table.conj tr:last-child td { border-bottom: none; }
         <a class="nav-point" href="#l11-p4">[freq] に [count]</a>
       </div>
     </div>
-    <div class="nav-lesson" data-lesson="12">
+    <div class="nav-lesson" data-id="l12">
       <a class="nav-lesson-link" href="#l12">
         <span class="nav-lesson-num">L12</span>
         <span class="nav-lesson-title">～んです, ～すぎる, ～ましょうか, でしょう</span>
@@ -1086,6 +1140,80 @@ table.conj tr:last-child td { border-bottom: none; }
         <a class="nav-point" href="#l12-p4">～ので</a>
         <a class="nav-point" href="#l12-p5">～ましょうか</a>
         <a class="nav-point" href="#l12-p6">でしょう</a>
+      </div>
+    </div>
+      </nav>
+
+      <div class="nav-section-title" style="margin-top: 1.5rem;">Bridge to N5</div>
+      <nav class="nav-list">
+    <div class="nav-lesson" data-id="sA">
+      <a class="nav-lesson-link" href="#sA">
+        <span class="nav-lesson-num">A</span>
+        <span class="nav-lesson-title">Obligation & Permission</span>
+      </a>
+      <div class="nav-points">
+        <a class="nav-point" href="#sA-p1">～なければいけません</a>
+        <a class="nav-point" href="#sA-p2">～なくてはいけません</a>
+        <a class="nav-point" href="#sA-p3">～ないといけません</a>
+        <a class="nav-point" href="#sA-p4">～なきゃ / ～なくちゃ</a>
+        <a class="nav-point" href="#sA-p5">～なくてもいいです</a>
+        <a class="nav-point" href="#sA-p6">～ちゃいけない / ～じゃいけない</a>
+        <a class="nav-point" href="#sA-p7">動詞 + な</a>
+        <a class="nav-point" href="#sA-p8">～ないで(ください)</a>
+      </div>
+    </div>
+    <div class="nav-lesson" data-id="sB">
+      <a class="nav-lesson-link" href="#sB">
+        <span class="nav-lesson-num">B</span>
+        <span class="nav-lesson-title">Casual Speech Building Blocks</span>
+      </a>
+      <div class="nav-points">
+        <a class="nav-point" href="#sB-p1">だ</a>
+        <a class="nav-point" href="#sB-p2">だから</a>
+        <a class="nav-point" href="#sB-p3">だろう</a>
+        <a class="nav-point" href="#sB-p4">けど / けれども</a>
+        <a class="nav-point" href="#sB-p5">んです / のです</a>
+        <a class="nav-point" href="#sB-p6">～なあ</a>
+        <a class="nav-point" href="#sB-p7">～よ</a>
+      </div>
+    </div>
+    <div class="nav-lesson" data-id="sC">
+      <a class="nav-lesson-link" href="#sC">
+        <span class="nav-lesson-num">C</span>
+        <span class="nav-lesson-title">Connectors & Question Words</span>
+      </a>
+      <div class="nav-points">
+        <a class="nav-point" href="#sC-p1">でも</a>
+        <a class="nav-point" href="#sC-p2">しかし</a>
+        <a class="nav-point" href="#sC-p3">それから</a>
+        <a class="nav-point" href="#sC-p4">そして</a>
+        <a class="nav-point" href="#sC-p5">どんな</a>
+        <a class="nav-point" href="#sC-p6">どうして / なぜ</a>
+        <a class="nav-point" href="#sC-p7">どうやって</a>
+        <a class="nav-point" href="#sC-p8">か〜か</a>
+        <a class="nav-point" href="#sC-p9">や</a>
+        <a class="nav-point" href="#sC-p10">とき</a>
+      </div>
+    </div>
+    <div class="nav-lesson" data-id="sD">
+      <a class="nav-lesson-link" href="#sD">
+        <span class="nav-lesson-num">D</span>
+        <span class="nav-lesson-title">Useful Patterns</span>
+      </a>
+      <div class="nav-points">
+        <a class="nav-point" href="#sD-p1">だけ</a>
+        <a class="nav-point" href="#sD-p2">くらい / ぐらい</a>
+        <a class="nav-point" href="#sD-p3">～方 (かた)</a>
+        <a class="nav-point" href="#sD-p4">にする</a>
+        <a class="nav-point" href="#sD-p5">～をください</a>
+        <a class="nav-point" href="#sD-p6">～のが上手／下手／好き</a>
+        <a class="nav-point" href="#sD-p7">verb + の</a>
+        <a class="nav-point" href="#sD-p8">～てある</a>
+        <a class="nav-point" href="#sD-p9">お / ご</a>
+        <a class="nav-point" href="#sD-p10">がほしい</a>
+        <a class="nav-point" href="#sD-p11">とても / すごく</a>
+        <a class="nav-point" href="#sD-p12">いつも / よく / ときどき</a>
+        <a class="nav-point" href="#sD-p13">一緒に</a>
       </div>
     </div>
       </nav>
@@ -1122,13 +1250,13 @@ table.conj tr:last-child td { border-bottom: none; }
           conjugations.
         </p>
         <div class="hero-meta">
-          <div><strong>12</strong> lessons</div>
-          <div><strong>70+</strong> grammar points</div>
-          <div><strong>N5</strong> + early N4</div>
+          <div><strong>12</strong> lessons + <strong>4</strong> bridge sections</div>
+          <div><strong>100+</strong> grammar points</div>
+          <div>Full <strong>N5</strong> coverage</div>
         </div>
 
         <section class="overview">
-          <h2 class="overview-title-h">Jump to a lesson</h2>
+          <h2 class="overview-title-h">Genki I · Lessons</h2>
           <div class="overview-grid">
     <a class="overview-card" href="#l1">
       <div class="overview-num">L1</div>
@@ -1189,6 +1317,30 @@ table.conj tr:last-child td { border-bottom: none; }
       <div class="overview-num">L12</div>
       <div class="overview-title">～んです, ～すぎる, ～ましょうか, でしょう</div>
       <div class="overview-focus">Giving and seeking explanations, excess, offering help, and softer predictions.</div>
+    </a>
+          </div>
+
+          <h2 class="overview-title-h" style="margin-top: 3rem;">Bridge to N5</h2>
+          <div class="overview-grid">
+    <a class="overview-card" href="#sA">
+      <div class="overview-num">A</div>
+      <div class="overview-title">Obligation & Permission</div>
+      <div class="overview-focus">Saying you must / mustn't / don't have to do something. Built from L6's te-form and L8's ない-form by stacking them with いけない/だめ/ならない.</div>
+    </a>
+    <a class="overview-card" href="#sB">
+      <div class="overview-num">B</div>
+      <div class="overview-title">Casual Speech Building Blocks</div>
+      <div class="overview-focus">The casual-register pieces Genki teaches stiffly or skips. With these you can read manga, follow anime dialogue, and chat with friends naturally.</div>
+    </a>
+    <a class="overview-card" href="#sC">
+      <div class="overview-num">C</div>
+      <div class="overview-title">Connectors & Question Words</div>
+      <div class="overview-focus">The glue between sentences and the question words for digging deeper. With these you stop writing in isolated sentences and start writing connected discourse.</div>
+    </a>
+    <a class="overview-card" href="#sD">
+      <div class="overview-num">D</div>
+      <div class="overview-title">Useful Patterns</div>
+      <div class="overview-focus">The remaining N5 odds and ends — high-frequency patterns that don't fit a single topic but show up constantly.</div>
     </a>
           </div>
         </section>
@@ -1846,6 +1998,358 @@ table.conj tr:last-child td { border-bottom: none; }
 
 </section>
 
+<div class="bridge-divider">
+  <div class="bridge-divider-inner">
+    <div class="bridge-divider-line"></div>
+    <div class="bridge-divider-label">
+      <div class="bridge-divider-eyebrow">Beyond Genki I</div>
+      <div class="bridge-divider-title">Bridge to N5</div>
+      <div class="bridge-divider-sub">Obligation, casual speech, connectors, and the remaining N5 patterns Genki I doesn't cover.</div>
+    </div>
+    <div class="bridge-divider-line"></div>
+  </div>
+</div>
+
+<section class="lesson section" data-title="A: Obligation & Permission" id="sA">
+  <header class="lesson-header">
+    <div class="num">Bridge to N5 &middot; Section A</div>
+    <h2>Obligation & Permission</h2>
+    <div class="focus">Saying you must / mustn't / don't have to do something. Built from L6's te-form and L8's ない-form by stacking them with いけない/だめ/ならない.</div>
+  </header>
+  
+<div class="point" id="sA-p1">
+  <div class="point-head">
+    <span class="point-num">1</span>
+    <h3 class="point-title">～なければいけません <span class="point-en">— You must do ___</span></h3>
+  </div>
+  <p class="gist">The standard "must" pattern. It's built by <strong>double negation</strong>: take the ない-form, drop the い, add <em class='jp'>ければいけません</em>. Literally "if you don't do X, it won't do" → "you must do X."</p><div class="form"><span class="label">Recipe</span>[ない-form] − い + ければいけません  →  行か<strong>ない</strong> → 行か<strong>なければいけません</strong></div><div class="ex"><div class="jp">あした 早く 起きなければいけません。</div><div class="en">I have to get up early tomorrow.</div></div><div class="ex"><div class="jp">くすりを 飲まなければいけません。</div><div class="en">You must take the medicine.</div></div><div class="ex"><div class="jp">しゅくだいを しなければいけません。</div><div class="en">I have to do my homework.</div></div><div class="tip">Mnemonically: this is just L6's <em class='jp'>～てはいけません</em> ("doing X is no good") flipped to the negative side: <em class='jp'>～なくては いけません</em> ("<em>not</em> doing X is no good") = "you must do it." The <em class='jp'>～なければ</em> form is a slightly older conditional twin of <em class='jp'>～なくては</em> — same meaning.</div>
+</div>
+
+<div class="point" id="sA-p2">
+  <div class="point-head">
+    <span class="point-num">2</span>
+    <h3 class="point-title">～なくてはいけません <span class="point-en">— You must do ___ (variant)</span></h3>
+  </div>
+  <p class="gist">Exact same meaning as <em class='jp'>～なければいけません</em>, just a different conditional construction underneath. Use whichever rolls off your tongue.</p><div class="form"><span class="label">Recipe</span>[ない-form] − い + くてはいけません  →  食べ<strong>ない</strong> → 食べ<strong>なくてはいけません</strong></div><div class="ex"><div class="jp">六時までに 帰らなくてはいけません。</div><div class="en">I have to be back by six.</div></div><div class="ex"><div class="jp">毎日 れんしゅうしなくてはいけません。</div><div class="en">I have to practice every day.</div></div><div class="tip">In writing and formal speech you'll also see <em class='jp'>～なくてはなりません</em> — even more formal, same meaning. <em class='jp'>なる</em> here is closer to "work out / be acceptable" than "become."</div>
+</div>
+
+<div class="point" id="sA-p3">
+  <div class="point-head">
+    <span class="point-num">3</span>
+    <h3 class="point-title">～ないといけません <span class="point-en">— You must do ___ (another variant)</span></h3>
+  </div>
+  <p class="gist">Yet another way to say "must." Uses the conditional particle <em class='jp'>と</em> instead. Slightly more conversational than the others, but still polite. All three (<em class='jp'>～なければ / ～なくては / ～ないと</em>) mean the same thing.</p><div class="form"><span class="label">Recipe</span>[ない-form] + と + いけません  →  行か<strong>ない</strong> → 行か<strong>ないといけません</strong></div><div class="ex"><div class="jp">そろそろ 行かないといけません。</div><div class="en">I should be heading off soon.</div></div><div class="ex"><div class="jp">先生に 聞かないといけません。</div><div class="en">I'll have to ask the teacher.</div></div>
+</div>
+
+<div class="point" id="sA-p4">
+  <div class="point-head">
+    <span class="point-num">4</span>
+    <h3 class="point-title">～なきゃ / ～なくちゃ <span class="point-en">— Gotta do ___ (very casual)</span></h3>
+  </div>
+  <p class="gist">The contraction you actually hear in speech. <em class='jp'>なければ</em> shrinks to <em class='jp'>なきゃ</em>; <em class='jp'>なくては</em> shrinks to <em class='jp'>なくちゃ</em>. The trailing <em class='jp'>いけない</em> usually gets <strong>dropped entirely</strong> — implied from context.</p><div class="form"><span class="label">Shortcuts</span>～なければ(いけない) → <strong>～なきゃ</strong>  &nbsp;|&nbsp;  ～なくては(いけない) → <strong>～なくちゃ</strong></div><div class="ex"><div class="jp">もう 行かなきゃ。</div><div class="en">Gotta go.</div></div><div class="ex"><div class="jp">勉強しなくちゃ。</div><div class="en">Gotta study.</div></div><div class="ex"><div class="jp">これ、覚えなきゃね。</div><div class="en">Gotta memorize this, huh.</div></div><div class="tip">This is by far the most common form in anime, NHK Easy News interviews, podcasts, etc. If you only learn one of the obligation forms for listening comprehension, learn this one.</div>
+</div>
+
+<div class="point" id="sA-p5">
+  <div class="point-head">
+    <span class="point-num">5</span>
+    <h3 class="point-title">～なくてもいいです <span class="point-en">— You don't have to do ___</span></h3>
+  </div>
+  <p class="gist">The opposite of "must do." Built from the ない-form's て-form (think of <em class='jp'>なくて</em> as the "te-form of ない") + <em class='jp'>も + いいです</em>. Same pattern shape as L6's <em class='jp'>～てもいいです</em> (permission), but applied to a negative.</p><div class="form"><span class="label">Recipe</span>[ない-form] − い + くてもいいです  →  来<strong>ない</strong> → 来<strong>なくてもいいです</strong></div><div class="ex"><div class="jp">あした 来なくてもいいですよ。</div><div class="en">You don't have to come tomorrow.</div></div><div class="ex"><div class="jp">お金を 払わなくてもいいです。</div><div class="en">You don't have to pay.</div></div><div class="warn">Watch the distinction. <em class='jp'>～なくてもいい</em> = "don't have to" (it's optional). <em class='jp'>～てはいけない</em> = "must not" (it's forbidden). English "don't ___" can mean either — Japanese forces you to pick.</div>
+</div>
+
+<div class="point" id="sA-p6">
+  <div class="point-head">
+    <span class="point-num">6</span>
+    <h3 class="point-title">～ちゃいけない / ～じゃいけない <span class="point-en">— Must not (casual contractions)</span></h3>
+  </div>
+  <p class="gist">L6 taught <em class='jp'>～てはいけません</em> ("must not do"). In speech, <em class='jp'>～ては</em> contracts to <em class='jp'>～ちゃ</em>, and <em class='jp'>～では</em> contracts to <em class='jp'>～じゃ</em>. The casual prohibition you'll hear constantly.</p><div class="form"><span class="label">Shortcuts</span>～ては → <strong>～ちゃ</strong>  &nbsp;|&nbsp;  ～では → <strong>～じゃ</strong></div><div class="ex"><div class="jp">ここに 入っちゃいけない。</div><div class="en">You can't come in here.</div></div><div class="ex"><div class="jp">これ、飲んじゃいけないよ。</div><div class="en">You're not allowed to drink this.</div></div><div class="ex"><div class="jp">そんなこと 言っちゃだめ！</div><div class="en">Don't say things like that!</div></div><div class="tip"><em class='jp'>だめ</em> ("no good") often replaces <em class='jp'>いけない</em> in casual speech — even more conversational. <em class='jp'>食べちゃだめ</em> = "don't eat that."</div>
+</div>
+
+<div class="point" id="sA-p7">
+  <div class="point-head">
+    <span class="point-num">7</span>
+    <h3 class="point-title">動詞 + な <span class="point-en">— Don't ___ (blunt prohibition)</span></h3>
+  </div>
+  <p class="gist">Attach <em class='jp'>な</em> directly to a verb's <strong>dictionary form</strong> for a sharp, blunt "don't!" Used by men, in commands, between close friends, or by angry people. Be careful — it's strong.</p><div class="form"><span class="label">Pattern</span>[dictionary form] + な  →  行く<strong>な</strong> / 見る<strong>な</strong> / するな</div><div class="ex"><div class="jp">行くな！</div><div class="en">Don't go!</div></div><div class="ex"><div class="jp">見るな。</div><div class="en">Don't look.</div></div><div class="ex"><div class="jp">そんなこと 言うな。</div><div class="en">Don't say that.</div></div><div class="warn">Don't confuse this prohibitive <em class='jp'>な</em> with the sentence-ending <em class='jp'>な</em> for reflection (covered in Section B) or the な-adjective connector. Context — and the bluntness — usually makes it clear.</div>
+</div>
+
+<div class="point" id="sA-p8">
+  <div class="point-head">
+    <span class="point-num">8</span>
+    <h3 class="point-title">～ないで(ください) <span class="point-en">— Without doing / please don't</span></h3>
+  </div>
+  <p class="gist">Two related uses. (1) With <em class='jp'>ください</em>: a polite "please don't" (already in L8). (2) Without <em class='jp'>ください</em>: "do B <em>without</em> doing A."</p><div class="form"><span class="label">Use 1 — request</span>[ない-form] + でください  →  心配し<strong>ない</strong> → 心配し<strong>ないでください</strong></div><div class="form"><span class="label">Use 2 — without doing</span>[ない-form] + で、[main clause]</div><div class="ex"><div class="jp">心配しないでください。</div><div class="en">Please don't worry.</div></div><div class="ex"><div class="jp">じしょを 使わないで、 書いてみてください。</div><div class="en">Try writing it without using a dictionary.</div></div><div class="ex"><div class="jp">朝ごはんを 食べないで、 学校へ 行きました。</div><div class="en">I went to school without eating breakfast.</div></div>
+</div>
+
+</section>
+
+<section class="lesson section" data-title="B: Casual Speech Building Blocks" id="sB">
+  <header class="lesson-header">
+    <div class="num">Bridge to N5 &middot; Section B</div>
+    <h2>Casual Speech Building Blocks</h2>
+    <div class="focus">The casual-register pieces Genki teaches stiffly or skips. With these you can read manga, follow anime dialogue, and chat with friends naturally.</div>
+  </header>
+  
+<div class="point" id="sB-p1">
+  <div class="point-head">
+    <span class="point-num">1</span>
+    <h3 class="point-title">だ <span class="point-en">— Plain copula — casual です</span></h3>
+  </div>
+  <p class="gist"><em class='jp'>だ</em> is the plain (non-polite) form of <em class='jp'>です</em>. You drop it in casual speech with friends, use it in inner monologue and writing, and it sits at the root of dozens of grammar patterns (<em class='jp'>だから, だろう, だけど</em>...).</p><table class="conj"><tr><th></th><th>Polite</th><th>Plain</th></tr><tr><td class="label-cell">Non-past</td><td>学生<strong>です</strong></td><td>学生<strong>だ</strong></td></tr><tr><td class="label-cell">Past</td><td>学生<strong>でした</strong></td><td>学生<strong>だった</strong></td></tr><tr><td class="label-cell">Non-past neg.</td><td>学生<strong>じゃないです</strong></td><td>学生<strong>じゃない</strong></td></tr><tr><td class="label-cell">Past neg.</td><td>学生<strong>じゃなかったです</strong></td><td>学生<strong>じゃなかった</strong></td></tr></table><div class="ex"><div class="jp">これ、おれの本だ。</div><div class="en">This is my book.</div></div><div class="ex"><div class="jp">きのうは 雨だった。</div><div class="en">It was raining yesterday.</div></div><div class="warn">In <strong>questions</strong>, casual speech drops <em class='jp'>だ</em> entirely. <em class='jp'>学生？</em> with rising tone, not <em class='jp'>×学生だ？</em>. The <em class='jp'>だ</em> only appears in statements.</div><div class="tip">Female speakers often drop <em class='jp'>だ</em> in declarations too: <em class='jp'>これ、私の本</em>. Male speakers tend to keep it. Generalization, not a rule.</div>
+</div>
+
+<div class="point" id="sB-p2">
+  <div class="point-head">
+    <span class="point-num">2</span>
+    <h3 class="point-title">だから <span class="point-en">— Because / so</span></h3>
+  </div>
+  <p class="gist">Reason-marker that joins two sentences with "so" / "therefore". Comes <em>between</em> the reason and the result (unlike L6's <em class='jp'>から</em>, which sits at the end of the reason clause). Casual register; polite version is <em class='jp'>ですから</em>.</p><div class="form"><span class="label">Pattern</span>[reason]。<strong>だから</strong>、[result]。</div><div class="ex"><div class="jp">あした テストだ。だから、 今晩 勉強する。</div><div class="en">Tomorrow's a test. So I'm studying tonight.</div></div><div class="ex"><div class="jp">頭が いたい。だから、 早く 寝るよ。</div><div class="en">My head hurts. So I'm going to bed early.</div></div><div class="tip">Compare to L6's <em class='jp'>から</em>: <em class='jp'>あしたテストがあるから、勉強する</em> packs both clauses into one sentence. <em class='jp'>だから</em> splits them — useful when the reason needs to stand on its own.</div>
+</div>
+
+<div class="point" id="sB-p3">
+  <div class="point-head">
+    <span class="point-num">3</span>
+    <h3 class="point-title">だろう <span class="point-en">— Probably / right? (casual でしょう)</span></h3>
+  </div>
+  <p class="gist">Plain form of L12's <em class='jp'>でしょう</em>. Same two uses: (1) softer "probably," (2) rising-tone "right?" for seeking agreement. Used in casual speech and inner monologue.</p><div class="ex"><div class="jp">あした 雨だろう。</div><div class="en">It'll probably rain tomorrow.</div></div><div class="ex"><div class="jp">これ、お前のだろう？</div><div class="en">This is yours, right?</div></div><div class="tip">Male speakers favor <em class='jp'>だろう</em>; female speakers more often soften to <em class='jp'>でしょう</em> even in casual speech. In anime, you'll hear blunt male characters say <em class='jp'>だろう</em> a lot.</div>
+</div>
+
+<div class="point" id="sB-p4">
+  <div class="point-head">
+    <span class="point-num">4</span>
+    <h3 class="point-title">けど / けれども <span class="point-en">— But / however (casual but-words)</span></h3>
+  </div>
+  <p class="gist">Three flavors of "but," same meaning, different register. <em class='jp'>けど</em> is most casual; <em class='jp'>けれど</em> is in the middle; <em class='jp'>けれども</em> is most formal. All attach to plain or polite forms.</p><table class="conj"><tr><th>Word</th><th>Register</th></tr><tr><td><em class="jp">けど</em></td><td>Most casual — speech with friends</td></tr><tr><td><em class="jp">けれど</em></td><td>Neutral</td></tr><tr><td><em class="jp">けれども</em></td><td>Formal, written</td></tr><tr><td><em class="jp">が</em></td><td>Formal, written (same job)</td></tr></table><div class="ex"><div class="jp">行きたいけど、 時間が ない。</div><div class="en">I want to go, but I don't have time.</div></div><div class="ex"><div class="jp">おいしいけれども、 高いです。</div><div class="en">It's tasty, but expensive.</div></div><div class="tip"><em class='jp'>けど</em> can also soften a statement when it's at the <em>end</em> of a sentence, with no following clause: <em class='jp'>ちょっと聞きたいんですけど…</em> ("I wanted to ask you something, but…"). The hanging "but" is an invitation to engage.</div>
+</div>
+
+<div class="point" id="sB-p5">
+  <div class="point-head">
+    <span class="point-num">5</span>
+    <h3 class="point-title">んです / のです <span class="point-en">— Explanation marker (revisited)</span></h3>
+  </div>
+  <p class="gist">L12 covered <em class='jp'>んです</em>. <em class='jp'>のです</em> is the same pattern, just slightly more formal and more common in writing. Both signal "there's a reason" / "let me explain" / "what's going on?"</p><div class="form"><span class="label">Same attachment rules</span>verb (plain) + んです/のです | い-adj + んです/のです | な-adj/noun + な + んです/のです</div><div class="ex"><div class="jp">どうして 来なかったのですか。</div><div class="en">How come you didn't come? <span style='color:#94a3b8'>(formal — written/官式)</span></div></div><div class="ex"><div class="jp">どうして 来なかったんですか。</div><div class="en">Same meaning, more conversational.</div></div><div class="tip">In casual speech, <em class='jp'>んです</em> often becomes just <em class='jp'>の</em> — especially in questions. <em class='jp'>来なかったの？</em> = "You didn't come? (what's up?)". Very common pattern.</div>
+</div>
+
+<div class="point" id="sB-p6">
+  <div class="point-head">
+    <span class="point-num">6</span>
+    <h3 class="point-title">～なあ <span class="point-en">— Sentence-ending reflection</span></h3>
+  </div>
+  <p class="gist">A reflective sentence-ender expressing the speaker's feeling — admiration, longing, mild surprise, sigh. Often translated as "…huh" or "…I wish…" Pure emotion-tagging, no grammatical role.</p><div class="ex"><div class="jp">きれいだなあ。</div><div class="en">Wow, that's beautiful.</div></div><div class="ex"><div class="jp">いいなあ、その時計。</div><div class="en">Nice watch (I want one).</div></div><div class="ex"><div class="jp">帰りたいなあ。</div><div class="en">Man, I wanna go home.</div></div><div class="tip">Often written as <em class='jp'>～な</em> alone in casual writing — the elongation is implied. Don't confuse with the prohibitive <em class='jp'>～な</em> from Section A: prohibitive attaches to dictionary form verbs (<em class='jp'>行くな</em>); reflective attaches to plain forms and feels emotional.</div>
+</div>
+
+<div class="point" id="sB-p7">
+  <div class="point-head">
+    <span class="point-num">7</span>
+    <h3 class="point-title">～よ <span class="point-en">— Sentence-ending information marker</span></h3>
+  </div>
+  <p class="gist">L1 introduced this briefly. Here's the fuller picture: <em class='jp'>よ</em> signals "I'm telling you something you don't already know" — sharing info, asserting, sometimes mildly correcting. Pairs well with <em class='jp'>ね</em> (which seeks agreement on shared knowledge).</p><div class="ex"><div class="jp">これ、おいしいよ。</div><div class="en">This is good (FYI).</div></div><div class="ex"><div class="jp">もう おそいよ。</div><div class="en">It's getting late, you know.</div></div><div class="ex"><div class="jp">あ、そこ あぶないですよ。</div><div class="en">Hey — that spot's dangerous.</div></div><div class="tip">Stacking: <em class='jp'>～よね</em> is common — "I'm telling you, right?" — asserting something and inviting agreement. <em class='jp'>おいしいよね</em> = "this is good, isn't it?"</div>
+</div>
+
+</section>
+
+<section class="lesson section" data-title="C: Connectors & Question Words" id="sC">
+  <header class="lesson-header">
+    <div class="num">Bridge to N5 &middot; Section C</div>
+    <h2>Connectors & Question Words</h2>
+    <div class="focus">The glue between sentences and the question words for digging deeper. With these you stop writing in isolated sentences and start writing connected discourse.</div>
+  </header>
+  
+<div class="point" id="sC-p1">
+  <div class="point-head">
+    <span class="point-num">1</span>
+    <h3 class="point-title">でも <span class="point-en">— But / however</span></h3>
+  </div>
+  <p class="gist">Sentence-initial "but." Comes at the <strong>start</strong> of the second sentence, after a full stop. More casual than <em class='jp'>しかし</em>.</p><div class="form"><span class="label">Pattern</span>[sentence 1]。<strong>でも</strong>、[sentence 2]。</div><div class="ex"><div class="jp">行きたかった。でも、 時間が なかった。</div><div class="en">I wanted to go. But I didn't have time.</div></div><div class="ex"><div class="jp">コーヒーが 好きです。でも、 きょうは 紅茶に します。</div><div class="en">I like coffee. But today I'll go with tea.</div></div><div class="tip">Don't put <em class='jp'>でも</em> mid-sentence between clauses — that's <em class='jp'>けど</em>'s job. <em class='jp'>でも</em> always starts a new sentence.</div>
+</div>
+
+<div class="point" id="sC-p2">
+  <div class="point-head">
+    <span class="point-num">2</span>
+    <h3 class="point-title">しかし <span class="point-en">— But / however (formal)</span></h3>
+  </div>
+  <p class="gist">Formal/written "but." Same position as <em class='jp'>でも</em> (sentence-initial), same meaning, more bookish. You'll see it in news articles and essays; you'd rarely say it out loud in casual conversation.</p><div class="ex"><div class="jp">この案には メリットが ある。しかし、 リスクも 大きい。</div><div class="en">This plan has merit. However, the risks are also large.</div></div><div class="tip">Register ladder for "but": <em class='jp'>けど (casual) → けれど → でも → けれども → しかし → が (most formal)</em>.</div>
+</div>
+
+<div class="point" id="sC-p3">
+  <div class="point-head">
+    <span class="point-num">3</span>
+    <h3 class="point-title">それから <span class="point-en">— And then / after that</span></h3>
+  </div>
+  <p class="gist">Sequencing connector — "after that, …" Use it to chain events in order. Also useful for adding items to a list ("…and another thing…").</p><div class="ex"><div class="jp">朝、おきました。それから、 朝ごはんを 食べました。</div><div class="en">I woke up in the morning. Then I ate breakfast.</div></div><div class="ex"><div class="jp">コーヒー、おねがいします。それから、サラダも。</div><div class="en">Coffee, please. And a salad too.</div></div>
+</div>
+
+<div class="point" id="sC-p4">
+  <div class="point-head">
+    <span class="point-num">4</span>
+    <h3 class="point-title">そして <span class="point-en">— And / and so</span></h3>
+  </div>
+  <p class="gist">A more general additive connector. Closer to written-English "and" linking sentences. Less time-sequential than <em class='jp'>それから</em>; more about adding a related idea.</p><div class="ex"><div class="jp">メアリーさんは あたまが いいです。そして、 やさしいです。</div><div class="en">Mary is smart. And she's kind.</div></div><div class="tip"><em class='jp'>それから</em> implies sequence ("then…"). <em class='jp'>そして</em> just adds ("and also…"). Often interchangeable but the nuance differs.</div>
+</div>
+
+<div class="point" id="sC-p5">
+  <div class="point-head">
+    <span class="point-num">5</span>
+    <h3 class="point-title">どんな <span class="point-en">— What kind of ___</span></h3>
+  </div>
+  <p class="gist">Question word that <strong>attaches to a noun</strong>: "what kind of ___?" Functions like a な-adjective grammatically.</p><div class="form"><span class="label">Pattern</span><strong>どんな</strong> + [noun] + ですか</div><div class="ex"><div class="jp">どんな 音楽が 好きですか。</div><div class="en">What kind of music do you like?</div></div><div class="ex"><div class="jp">どんな 人ですか。</div><div class="en">What kind of person is he/she?</div></div><div class="warn">Don't confuse <em class='jp'>どんな</em> with <em class='jp'>なに</em>. <em class='jp'>なにが好きですか</em> = "what do you like?" (asks for a specific thing). <em class='jp'>どんなのが好きですか</em> = "what kind do you like?" (asks for a category).</div>
+</div>
+
+<div class="point" id="sC-p6">
+  <div class="point-head">
+    <span class="point-num">6</span>
+    <h3 class="point-title">どうして / なぜ <span class="point-en">— Why</span></h3>
+  </div>
+  <p class="gist">Two ways to ask "why." <em class='jp'>どうして</em> is most common in speech; <em class='jp'>なぜ</em> is slightly more formal/written. Often paired with <em class='jp'>んです</em> to soften.</p><div class="ex"><div class="jp">どうして 来なかったんですか。</div><div class="en">Why didn't you come?</div></div><div class="ex"><div class="jp">なぜ そう 思いますか。</div><div class="en">Why do you think so?</div></div><div class="tip">Even more casual: <em class='jp'>なんで</em>. <em class='jp'>なんで遅れたの？</em> = "why are you late?" Casual-only — don't use it with your boss.</div>
+</div>
+
+<div class="point" id="sC-p7">
+  <div class="point-head">
+    <span class="point-num">7</span>
+    <h3 class="point-title">どうやって <span class="point-en">— How / by what means</span></h3>
+  </div>
+  <p class="gist">Asks for a <strong>method</strong>. Different from <em class='jp'>どう</em> alone ("how was it?" — asking impression). <em class='jp'>どうやって</em> specifically wants instructions or a procedure.</p><div class="ex"><div class="jp">駅まで どうやって 行きますか。</div><div class="en">How do I get to the station?</div></div><div class="ex"><div class="jp">これ、どうやって 食べるの？</div><div class="en">How do I eat this?</div></div>
+</div>
+
+<div class="point" id="sC-p8">
+  <div class="point-head">
+    <span class="point-num">8</span>
+    <h3 class="point-title">か〜か <span class="point-en">— X or Y</span></h3>
+  </div>
+  <p class="gist">Use <em class='jp'>か</em> between two (or more) nouns to mean "X or Y" — choosing among alternatives. Note: the second <em class='jp'>か</em> can sometimes be dropped.</p><div class="form"><span class="label">Pattern</span>[noun]か [noun]か</div><div class="ex"><div class="jp">コーヒーか 紅茶か、 どちらが いいですか。</div><div class="en">Which is better, coffee or tea?</div></div><div class="ex"><div class="jp">ペンか えんぴつで 書いてください。</div><div class="en">Please write with a pen or pencil.</div></div>
+</div>
+
+<div class="point" id="sC-p9">
+  <div class="point-head">
+    <span class="point-num">9</span>
+    <h3 class="point-title">や <span class="point-en">— And / or (non-exhaustive listing)</span></h3>
+  </div>
+  <p class="gist">Lists two or more nouns as <em>examples</em>, implying "…and other things too." Different from <em class='jp'>と</em> (which lists exhaustively: "X and Y, that's all").</p><div class="form"><span class="label">Compare</span>X<strong>と</strong>Y = X and Y (only these)  |  X<strong>や</strong>Y = X and Y (among others)</div><div class="ex"><div class="jp">つくえの上に 本や ペンが あります。</div><div class="en">There are books, pens, and other things on the desk.</div></div><div class="ex"><div class="jp">週末は 映画を 見たり、本を 読んだりします。</div><div class="en">(For comparison — verb listing uses ～たり instead.)</div></div><div class="tip">Often paired with <em class='jp'>～など</em> at the end for explicit "…etc.": <em class='jp'>りんごやみかんなど</em> = "apples, oranges, and so on."</div>
+</div>
+
+<div class="point" id="sC-p10">
+  <div class="point-head">
+    <span class="point-num">10</span>
+    <h3 class="point-title">とき <span class="point-en">— When ___</span></h3>
+  </div>
+  <p class="gist">Attach a plain-form clause + <em class='jp'>とき</em> to mean "when [clause]." Acts like a time-expression noun.</p><div class="form"><span class="label">Pattern</span>[plain-form clause] + とき(に)、[main clause]</div><div class="ex"><div class="jp">子どもの とき、 よく 川で あそびました。</div><div class="en">When I was a kid, I often played in the river.</div></div><div class="ex"><div class="jp">日本へ 行くとき、 おみやげを 買います。</div><div class="en">When I go to Japan, I'll buy souvenirs. <span style='color:#94a3b8'>(before going — non-past)</span></div></div><div class="ex"><div class="jp">日本へ 行ったとき、 おみやげを 買いました。</div><div class="en">When I went to Japan, I bought souvenirs. <span style='color:#94a3b8'>(after arriving — past)</span></div></div><div class="warn">Tense matters. <em class='jp'>行くとき</em> (non-past) implies "before/while going." <em class='jp'>行ったとき</em> (past) implies "when I had arrived." Same event, different stage. Genki II covers this in depth — for now, just notice the tense.</div>
+</div>
+
+</section>
+
+<section class="lesson section" data-title="D: Useful Patterns" id="sD">
+  <header class="lesson-header">
+    <div class="num">Bridge to N5 &middot; Section D</div>
+    <h2>Useful Patterns</h2>
+    <div class="focus">The remaining N5 odds and ends — high-frequency patterns that don't fit a single topic but show up constantly.</div>
+  </header>
+  
+<div class="point" id="sD-p1">
+  <div class="point-head">
+    <span class="point-num">1</span>
+    <h3 class="point-title">だけ <span class="point-en">— Only / just</span></h3>
+  </div>
+  <p class="gist">Limits the noun or quantity it follows. Comes after the thing it limits.</p><div class="form"><span class="label">Pattern</span>[noun/quantity] + だけ</div><div class="ex"><div class="jp">水だけ 飲みます。</div><div class="en">I'll just drink water.</div></div><div class="ex"><div class="jp">一つだけ ください。</div><div class="en">Just one, please.</div></div><div class="ex"><div class="jp">あなただけ。</div><div class="en">Only you.</div></div>
+</div>
+
+<div class="point" id="sD-p2">
+  <div class="point-head">
+    <span class="point-num">2</span>
+    <h3 class="point-title">くらい / ぐらい <span class="point-en">— About / approximately</span></h3>
+  </div>
+  <p class="gist">Vague-quantifier. Attaches to a number or time to mean "about." <em class='jp'>くらい</em> and <em class='jp'>ぐらい</em> are interchangeable.</p><div class="form"><span class="label">Pattern</span>[quantity/time] + くらい／ぐらい</div><div class="ex"><div class="jp">一時間ぐらい かかります。</div><div class="en">It takes about an hour.</div></div><div class="ex"><div class="jp">三人くらい 来ました。</div><div class="en">About three people came.</div></div><div class="tip">Different from <em class='jp'>～ごろ</em>, which means "around a point in time": <em class='jp'>三時ごろ</em> = "around 3 o'clock." <em class='jp'>くらい</em> is for amounts/durations.</div>
+</div>
+
+<div class="point" id="sD-p3">
+  <div class="point-head">
+    <span class="point-num">3</span>
+    <h3 class="point-title">～方 (かた) <span class="point-en">— How to do ___ / way of doing</span></h3>
+  </div>
+  <p class="gist">Attach <em class='jp'>方</em> to the verb stem (ます-form minus ます) to make a noun meaning "the way of ___ing."</p><div class="form"><span class="label">Pattern</span>[verb stem] + 方  →  使う → 使い<strong>方</strong></div><div class="ex"><div class="jp">使い方を 教えてください。</div><div class="en">Please teach me how to use it.</div></div><div class="ex"><div class="jp">食べ方が わかりません。</div><div class="en">I don't know how to eat this.</div></div><div class="ex"><div class="jp">漢字の 書き方</div><div class="en">the way to write kanji</div></div>
+</div>
+
+<div class="point" id="sD-p4">
+  <div class="point-head">
+    <span class="point-num">4</span>
+    <h3 class="point-title">にする <span class="point-en">— Decide on ___ / I'll go with ___</span></h3>
+  </div>
+  <p class="gist">Used when picking from options — ordering at a restaurant, choosing a color, settling a decision. The thing chosen is marked with <em class='jp'>に</em>.</p><div class="form"><span class="label">Pattern</span>[choice] + にします</div><div class="ex"><div class="jp">コーヒーに します。</div><div class="en">I'll have coffee. <span style='color:#94a3b8'>(ordering)</span></div></div><div class="ex"><div class="jp">どれに しますか。</div><div class="en">Which one will you go with?</div></div><div class="ex"><div class="jp">赤に しました。</div><div class="en">I went with the red one.</div></div>
+</div>
+
+<div class="point" id="sD-p5">
+  <div class="point-head">
+    <span class="point-num">5</span>
+    <h3 class="point-title">～をください <span class="point-en">— Please give me ___</span></h3>
+  </div>
+  <p class="gist">Polite request for an item. Different from <em class='jp'>～てください</em> (which requests an action).</p><div class="form"><span class="label">Pattern</span>[noun] + を + ください</div><div class="ex"><div class="jp">水を ください。</div><div class="en">Water, please.</div></div><div class="ex"><div class="jp">メニューを ください。</div><div class="en">Could I have the menu?</div></div><div class="warn"><em class='jp'>～をください</em> asks for a <em>thing</em>. <em class='jp'>～てください</em> asks for an <em>action</em>. Different をvs.て.</div>
+</div>
+
+<div class="point" id="sD-p6">
+  <div class="point-head">
+    <span class="point-num">6</span>
+    <h3 class="point-title">～のが上手／下手／好き <span class="point-en">— Good at / bad at / like doing</span></h3>
+  </div>
+  <p class="gist">Verb nominalizer <em class='jp'>の</em> turns a verb into a noun, which then takes the L5 "liking" pattern. Pattern: <em class='jp'>[plain verb] + のが + 上手／下手／好き</em>.</p><div class="form"><span class="label">Recipe</span>[dict. form] + のが + [上手／下手／好き]<strong>です</strong></div><div class="ex"><div class="jp">ピアノを 弾くのが 上手です。</div><div class="en">I'm good at playing piano.</div></div><div class="ex"><div class="jp">人前で 話すのが 下手です。</div><div class="en">I'm bad at speaking in public.</div></div><div class="ex"><div class="jp">本を 読むのが 好きです。</div><div class="en">I like reading books.</div></div><div class="tip">Notice the <em class='jp'>が</em>! Just like L5's <em class='jp'>好きです</em>, the thing-liked/done takes <em class='jp'>が</em>, not <em class='jp'>を</em>.</div>
+</div>
+
+<div class="point" id="sD-p7">
+  <div class="point-head">
+    <span class="point-num">7</span>
+    <h3 class="point-title">verb + の <span class="point-en">— Verb nominalizer</span></h3>
+  </div>
+  <p class="gist">Add <em class='jp'>の</em> to the dictionary form of a verb to turn it into a noun. Use when you want to talk about "the act of ___ing" as a subject or object.</p><div class="form"><span class="label">Pattern</span>[dict. form] + の  →  食べる → 食べる<strong>の</strong> ("eating" / "to eat")</div><div class="ex"><div class="jp">料理するのが 好きです。</div><div class="en">I like cooking.</div></div><div class="ex"><div class="jp">勉強するのは むずかしい。</div><div class="en">Studying is hard.</div></div><div class="tip">Compare to L1's possessive <em class='jp'>の</em>: <em class='jp'>たけしさんの本</em> ("Takeshi's book"). Same particle, different job — possession vs nominalization. Context tells you which.</div>
+</div>
+
+<div class="point" id="sD-p8">
+  <div class="point-head">
+    <span class="point-num">8</span>
+    <h3 class="point-title">～てある <span class="point-en">— Has been done (resulting state)</span></h3>
+  </div>
+  <p class="gist">Describes a <strong>resulting state</strong> from a deliberate prior action — someone did X, and now it stays done. Different from L7's <em class='jp'>～ている</em> for resulting state (intransitive verbs); <em class='jp'>～てある</em> uses <strong>transitive</strong> verbs and emphasizes that someone did it on purpose.</p><div class="form"><span class="label">Pattern</span>[transitive te-form] + ある</div><div class="ex"><div class="jp">まどが 開けてあります。</div><div class="en">The window has been left open. <span style='color:#94a3b8'>(someone opened it deliberately)</span></div></div><div class="ex"><div class="jp">ホテルは 予約してあります。</div><div class="en">The hotel has been booked.</div></div><div class="warn">Compare carefully: <em class='jp'>まどが開いている</em> (intransitive <em class='jp'>開く</em>) = "the window is open" (just the state). <em class='jp'>まどが開けてある</em> (transitive <em class='jp'>開ける</em>) = "the window has been opened" (someone did it). Subtle but real difference.</div>
+</div>
+
+<div class="point" id="sD-p9">
+  <div class="point-head">
+    <span class="point-num">9</span>
+    <h3 class="point-title">お / ご <span class="point-en">— Honorific prefixes</span></h3>
+  </div>
+  <p class="gist">Attach <em class='jp'>お</em> or <em class='jp'>ご</em> in front of a noun for politeness/respect. Roughly: <em class='jp'>お</em> goes on words of Japanese origin (和語); <em class='jp'>ご</em> goes on words of Chinese origin (漢語). With many high-frequency words, you'll see them so often they essentially become part of the word.</p><table class="conj"><tr><th>Base</th><th>With prefix</th></tr><tr><td>名前 (name)</td><td>お名前</td></tr><tr><td>金 (money)</td><td>お金</td></tr><tr><td>すし</td><td>おすし</td></tr><tr><td>家族 (family)</td><td>ご家族</td></tr><tr><td>主人 (husband)</td><td>ご主人</td></tr><tr><td>連絡 (contact)</td><td>ご連絡</td></tr></table><div class="tip">There are exceptions and habit-only attachments (e.g. <em class='jp'>お茶, お風呂, お弁当</em> are essentially always with <em class='jp'>お</em>). Don't try to derive the rule from scratch — just notice the patterns as you encounter them.</div>
+</div>
+
+<div class="point" id="sD-p10">
+  <div class="point-head">
+    <span class="point-num">10</span>
+    <h3 class="point-title">がほしい <span class="point-en">— Want ___ (a noun)</span></h3>
+  </div>
+  <p class="gist">Expresses wanting a <strong>thing</strong>. The thing wanted is marked with <em class='jp'>が</em> (like L5's 好き). Different from L11's <em class='jp'>～たい</em>, which expresses wanting to <em>do</em> something.</p><div class="form"><span class="label">Pattern</span>[noun] + が + ほしい(です)</div><div class="ex"><div class="jp">新しい パソコンが ほしいです。</div><div class="en">I want a new computer.</div></div><div class="ex"><div class="jp">時間が ほしい。</div><div class="en">I want (more) time.</div></div><div class="warn">Same restriction as <em class='jp'>～たい</em>: <em class='jp'>がほしい</em> describes only the speaker's own desires (or asks about the listener's). For third-person wants, use <em class='jp'>～をほしがっている</em>.</div>
+</div>
+
+<div class="point" id="sD-p11">
+  <div class="point-head">
+    <span class="point-num">11</span>
+    <h3 class="point-title">とても / すごく <span class="point-en">— Very</span></h3>
+  </div>
+  <p class="gist">Intensifier before an adjective. <em class='jp'>とても</em> is neutral/polite; <em class='jp'>すごく</em> is more casual.</p><div class="ex"><div class="jp">とても おもしろいです。</div><div class="en">It's very interesting.</div></div><div class="ex"><div class="jp">すごく いい！</div><div class="en">Super good!</div></div><div class="warn">With negatives, switch to <em class='jp'>あまり</em>: <em class='jp'>とてもおもしろくない</em> sounds off; use <em class='jp'>あまりおもしろくない</em> = "not very interesting." Same pattern as L3's frequency adverbs.</div>
+</div>
+
+<div class="point" id="sD-p12">
+  <div class="point-head">
+    <span class="point-num">12</span>
+    <h3 class="point-title">いつも / よく / ときどき <span class="point-en">— Always / often / sometimes (review)</span></h3>
+  </div>
+  <p class="gist">Frequency adverbs that go right before the verb. L3 covered <em class='jp'>よく, ときどき, あまり, ぜんぜん</em>. Add <em class='jp'>いつも</em> (always) to round out the set.</p><div class="ex"><div class="jp">いつも 朝ごはんを 食べます。</div><div class="en">I always eat breakfast.</div></div><div class="ex"><div class="jp">いつも ありがとう。</div><div class="en">Thanks, as always.</div></div>
+</div>
+
+<div class="point" id="sD-p13">
+  <div class="point-head">
+    <span class="point-num">13</span>
+    <h3 class="point-title">一緒に <span class="point-en">— Together</span></h3>
+  </div>
+  <p class="gist">"Together" adverb — modifies a verb, often paired with <em class='jp'>～と</em> (with) to specify who you're together with.</p><div class="ex"><div class="jp">いっしょに 行きましょう。</div><div class="en">Let's go together.</div></div><div class="ex"><div class="jp">ともだちと いっしょに 勉強しました。</div><div class="en">I studied together with a friend.</div></div>
+</div>
+
+</section>
+
     </div>
   </main>
 </div>
@@ -1953,6 +2457,16 @@ table.conj tr:last-child td { border-bottom: none; }
   // Nav click lockout: when user clicks a nav link, lock the IO updates
   // for ~800ms so the click target stays "current" through the scroll.
   let navLockUntil = 0;
+
+  // Extract the parent entry id from any anchor href or point id.
+  // Examples: "#l3" → "l3" | "#l3-p2" → "l3" | "#sA" → "sA" | "sA-p3" → "sA"
+  function parentIdOf(s) {
+    if (!s) return null;
+    if (s.startsWith('#')) s = s.slice(1);
+    const dash = s.indexOf('-');
+    return dash === -1 ? s : s.slice(0, dash);
+  }
+
   document.querySelectorAll('.nav-lesson-link, .nav-point').forEach(el => {
     el.addEventListener('click', () => {
       navLockUntil = Date.now() + 900;
@@ -1960,19 +2474,11 @@ table.conj tr:last-child td { border-bottom: none; }
       if (!href || !href.startsWith('#')) return;
       // Force current state immediately for snappy feel
       clearActive();
+      const parent = parentIdOf(href);
+      const nav = document.querySelector('.nav-lesson[data-id="' + parent + '"]');
+      if (nav) nav.classList.add('current', 'active');
       if (el.classList.contains('nav-point')) {
         el.classList.add('current');
-        const lessonMatch = href.match(/#l(\d+)/);
-        if (lessonMatch) {
-          const nav = document.querySelector('.nav-lesson[data-lesson="' + lessonMatch[1] + '"]');
-          if (nav) nav.classList.add('current', 'active');
-        }
-      } else {
-        const lessonMatch = href.match(/#l(\d+)/);
-        if (lessonMatch) {
-          const nav = document.querySelector('.nav-lesson[data-lesson="' + lessonMatch[1] + '"]');
-          if (nav) nav.classList.add('current', 'active');
-        }
       }
     });
   });
@@ -2019,17 +2525,15 @@ table.conj tr:last-child td { border-bottom: none; }
     }
     let topLesson = null;
     if (topPoint) {
-      const m = topPoint.match(/^l(\d+)/);
-      if (m) topLesson = 'l' + m[1];
+      topLesson = parentIdOf(topPoint);
     } else {
       let lr = 0;
       for (const [id, r] of visibleLessons) { if (r > lr) { lr = r; topLesson = id; } }
     }
     if (topLesson) {
-      const nav = document.querySelector('.nav-lesson[data-lesson="' + topLesson.slice(1) + '"]');
+      const nav = document.querySelector('.nav-lesson[data-id="' + topLesson + '"]');
       if (nav) {
         nav.classList.add('current', 'active');
-        // Scroll the active nav lesson into sidebar viewport if needed
         scrollNavIntoView(nav);
       }
     }
@@ -2090,16 +2594,14 @@ table.conj tr:last-child td { border-bottom: none; }
       if (text.includes(q)) {
         p.classList.add('highlight');
         p.classList.remove('dimmed');
-        const lessonId = p.id.match(/^l(\d+)/)[1];
-        anyMatchInLesson.add(lessonId);
+        anyMatchInLesson.add(parentIdOf(p.id));
       } else {
         p.classList.add('dimmed');
         p.classList.remove('highlight');
       }
     });
     lessons.forEach(l => {
-      const n = l.id.slice(1);
-      l.style.display = anyMatchInLesson.has(n) ? '' : 'none';
+      l.style.display = anyMatchInLesson.has(l.id) ? '' : 'none';
     });
   }
 
